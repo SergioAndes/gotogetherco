@@ -14,14 +14,19 @@
   },
   "styles": [
     "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"
-],
-   "budgets": [
-       {
-          "type": "initial",
-          "maximumWarning": "4mb",
-          "maximumError": "5mb"
-       }
-    ],
+  ],
+  "budgets": [
+    {
+      "type": "initial",
+      "maximumWarning": "4mb",
+      "maximumError": "5mb"
+    },
+    {
+      "type": "anyComponentStyle",
+      "maximumWarning": "150kb",
+      "maximumError": "150kb"
+    }
+  ],
   "engines": {
     "node": "14.17.6",
     "npm": "6.14.15"
