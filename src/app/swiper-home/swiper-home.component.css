@@ -1,7 +1,29 @@
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff9966;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ff9966;
+}
 .example-card {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .example-header-image {
@@ -62,4 +84,10 @@
 .topnav a.active {
   background-color: #04AA6D;
   color: white;
+}
+
+
+.mat-card{
+  background-color: antiquewhite;
+  color: black;
 }

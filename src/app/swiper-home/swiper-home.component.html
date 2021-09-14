@@ -1,17 +1,11 @@
-<div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-</div>
+<app-navbar></app-navbar>
+
 <br>
 <br>
 <swiper [slidesPerView]="1" [spaceBetween]="30" [pagination]="{clickable: true}" class="mySwiper">
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
-    <swiper [spaceBetween]="464" [slidesPerView]="2" [direction]="'vertical'" [pagination]="{clickable: true}" class="mySwiper">
-      <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
-        <mat-card class="example-card">
+        <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>Shiba Inu</mat-card-title>
@@ -30,11 +24,26 @@
             <button mat-button>LIKE</button>
             <button mat-button>SHARE</button>
           </mat-card-actions>
+
+          <mat-card class="example-card" *ngFor="let evento of eventos, let i=index;" [class.mat-elevation-z8]=true>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+               alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+              bred for hunting.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+
         </mat-card>
+
+        </mat-card>
+
       </ng-template>
-    </swiper>
-
-
-  </ng-template>
 </swiper>
 
