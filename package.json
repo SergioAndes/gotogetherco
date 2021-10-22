@@ -15,7 +15,6 @@
   "styles": [
     "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"
   ],
-
   "engines": {
     "node": "14.17.6",
     "npm": "6.14.15"
@@ -38,6 +37,7 @@
     "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "save": "^2.4.0",
+    "sweetalert2": "^11.1.9",
     "swiper": "^7.0.5",
     "tslib": "^2.0.0",
     "typescript": "^4.3.2",

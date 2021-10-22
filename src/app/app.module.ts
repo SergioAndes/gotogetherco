@@ -15,6 +15,13 @@ import {MatButtonModule} from "@angular/material/button";
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { ChatlistComponent } from './chatlist/chatlist.component';
+import { RegisterComponent } from './register/register.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { EventosManagerComponent } from './eventos-manager/eventos-manager.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MatSelectModule} from "@angular/material/select";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     HomeComponent,
     LoginComponent,
     SwiperHomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChatlistComponent,
+    RegisterComponent,
+    EventosManagerComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +44,10 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
