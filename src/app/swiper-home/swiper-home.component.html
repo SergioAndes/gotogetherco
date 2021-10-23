@@ -2,7 +2,7 @@
 
 <br>
 <br>
-<swiper [slidesPerView]="1" [spaceBetween]="30" [pagination]="{clickable: true}" class="mySwiper">
+<swiper [slidesPerView]="1"  (slideChange)="onSwiper($event)" [spaceBetween]="30" [pagination]="{clickable: true}" class="mySwiper">
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
         <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>

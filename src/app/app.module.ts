@@ -22,6 +22,11 @@ import { EventosManagerComponent } from './eventos-manager/eventos-manager.compo
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { ProfileComponent } from './profile/profile.component';
     ChatlistComponent,
     RegisterComponent,
     EventosManagerComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,12 @@ import { ProfileComponent } from './profile/profile.component';
     MatToolbarModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule
+
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
