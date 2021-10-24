@@ -34,7 +34,7 @@ export class UserService {
 
 
   getUserById(id: any): Observable<any> {
-    return this.http.get(this.URL_HOST + 'users/register/'+ id);
+    return this.http.get(this.URL_HOST + 'users/search/'+ id);
   }
 
   getImages(id: any): Observable<any> {

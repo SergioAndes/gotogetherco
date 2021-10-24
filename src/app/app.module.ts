@@ -27,6 +27,8 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
     MatDatepickerModule,
     MatNativeDateModule,
     MatNativeDateModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatGridListModule,
+    MatDividerModule
 
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
