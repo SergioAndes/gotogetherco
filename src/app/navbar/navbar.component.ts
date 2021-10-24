@@ -15,7 +15,17 @@ export class NavbarComponent implements OnInit {
 
   goToCreateEvent(){
     this.route.navigate(['createEvent']);
-
   }
 
+  goToSwiper(){
+    this.route.navigate(['swiper']);
+  }
+
+  goToProfile() {
+    this.route.navigate(['profile']);
+  }
+
+  goToEventManare() {
+    this.route.navigate(['eventos-manager']);
+  }
 }
