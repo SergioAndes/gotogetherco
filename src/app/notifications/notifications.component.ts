@@ -46,7 +46,7 @@ export class NotificationsComponent implements OnInit {
       data.forEach(element => {
         const solicitud = new Solicitud();
         solicitud.users = element;
-        this.authService.getImages(element.user_id.id).subscribe(dataz => {
+        this.authService.getImages(element.user_id.id, localStorage.getItem('token')).subscribe(dataz => {
           console.log("fotos", dataz.profiles[0].image)
           solicitud.foto = dataz.profiles[0].image
         }, error => {

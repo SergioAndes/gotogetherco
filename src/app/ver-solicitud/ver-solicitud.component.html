@@ -1,4 +1,3 @@
-
 <mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
   <br>
   <mat-card-header>
@@ -9,20 +8,15 @@
   <br>
   <mat-card-content>
 
-      <swiper
-    [spaceBetween]="30"
-    [pagination]="{
-      clickable: true
-    }"
-    class="mySwiper"
-  >
+    <swiper [class.mat-elevation-z8]=true   style="border-radius:4px;width: 100%;height: 400px;" [spaceBetween]="30" [pagination]="{clickable: true}" class="mySwiper">
 
 
-      <ng-template swiperSlide *ngFor="let image of fotos, let i=index;">
+      <ng-template  swiperSlide *ngFor="let image of fotos, let i=index;">
+
         <img mat-card-image src="{{image.image}}" alt="Photo of a Shiba Inu"></ng-template>
 
 
-  </swiper>
+    </swiper>
 
 
     <p>
@@ -31,8 +25,8 @@
     </p>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
-    <button mat-button >Cancelar</button>
-    <button mat-button >Gotogether!</button>
+    <button mat-button>Cancelar</button>
+    <button mat-button (click)="acceptSolicitud()">Gotogether!</button>
   </mat-card-actions>
 
 </mat-card>

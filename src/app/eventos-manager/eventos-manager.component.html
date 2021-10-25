@@ -1,16 +1,28 @@
 <app-navbar></app-navbar>
 <br>
 <mat-grid-list cols="3" rowHeight="10:1">
-  <mat-grid-tile><b style="cursor: pointer;">Chat</b></mat-grid-tile>
+  <mat-grid-tile (click)="vibilidad(2)"><b style="cursor: pointer;">Chat</b></mat-grid-tile>
   <mat-grid-tile><b style="cursor: pointer;">Postulados</b></mat-grid-tile>
-  <mat-grid-tile><b style="cursor: pointer;">Creados</b></mat-grid-tile>
+  <mat-grid-tile (click)="vibilidad(1)"><b style="cursor: pointer;">Creados</b></mat-grid-tile>
 </mat-grid-list>
 <br>
 <mat-divider></mat-divider>
 <br>
-  <mat-card swiperSlide *ngFor="let solicitud of solicitudes, let i=index;" class="example-card" >
-  <mat-card-header (click)="verSolicitud(solicitud)">
-    <mat-card-title >{{solicitud.name}}</mat-card-title>
+
+<div *ngIf="visible==2">
+<mat-card swiperSlide *ngFor="let solicitud of matches, let i=index;" class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{solicitud.name}}</mat-card-title>
     <mat-card-subtitle style="color: #343a40">{{solicitud.event_date}}</mat-card-subtitle>
   </mat-card-header>
 </mat-card>
+</div>
+
+<div *ngIf="visible==1">
+<mat-card swiperSlide *ngFor="let solicitud of solicitudes, let i=index;" class="example-card">
+  <mat-card-header (click)="verSolicitud(solicitud)">
+    <mat-card-title>{{solicitud.name}}</mat-card-title>
+    <mat-card-subtitle style="color: #343a40">{{solicitud.event_date}}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+</div>

@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
   public getImages() {
     const stack = [];
-    this.authService.getImages(this.id).subscribe(data => {
+    this.authService.getImages(this.id, localStorage.getItem('token')).subscribe(data => {
       console.log("foto", data.profiles)
       const fotos = data.profiles;
       this.imagesarray = data

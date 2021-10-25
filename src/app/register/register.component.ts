@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     console.log("log",this.registerForm.value)
     this.authService.registerUser(this.registerForm.value).subscribe(data => {
       Swal.fire('success', 'Usuario registrado exitosamente!', 'success');
-      this.route.navigate(['editProfile']);
+      this.route.navigate(['login']);
     },error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
  console.log('datadssd', error);

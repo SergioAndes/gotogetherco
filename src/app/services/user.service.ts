@@ -37,8 +37,8 @@ export class UserService {
     return this.http.get(this.URL_HOST + 'users/search/'+ id);
   }
 
-  getImages(id: any): Observable<any> {
-    let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
+  getImages(id: any, token:any): Observable<any> {
+    let headers = new HttpHeaders({'Authorization': 'Token ' + token});
     return this.http.get(this.URL_HOST + 'users/profile/'+ id,{'headers': headers});
   }
 

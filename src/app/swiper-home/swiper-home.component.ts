@@ -50,7 +50,7 @@ export class SwiperHomeComponent implements OnInit {
         console.log("evento",data)
         this.userService.getUserById(element.user_id).subscribe(dataz => {
           console.log("user",dataz)
-          this.userService.getImages(dataz[0].id).subscribe(datax => {
+          this.userService.getImages(dataz[0].id,localStorage.getItem('token')).subscribe(datax => {
             console.log("perfiles",datax)
             const evento = new Evento();
             evento.evento = element;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EventoService} from "../services/evento.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
@@ -10,9 +10,13 @@ import {Router} from "@angular/router";
 })
 export class EventosManagerComponent implements OnInit {
 
-  constructor(private route: Router,private eventoService: EventoService) { }
+  constructor(private route: Router, private eventoService: EventoService) {
+  }
+
   id: any;
   solicitudes: any;
+  public visible: any;
+  public matches: any;
 
   ngOnInit(): void {
     const user = localStorage.getItem('user')
@@ -21,17 +25,40 @@ export class EventosManagerComponent implements OnInit {
     this.getEventos();
   }
 
-  getEventos(){
+  vibilidad(entero:any){
+    this.visible=entero;
+  }
+
+  getEventos() {
     this.eventoService.getEventosXUsuario(this.id).subscribe(data => {
-      console.log("mamabicho",data)
-      this.solicitudes=data;
+      console.log("eventoxusuario", data)
+      this.solicitudes = data;
+      //this.getMatches()
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
     });
   }
 
+  getMatches() {
+    this.eventoService.getMatches(this.id).subscribe(data => {
+      console.log("Matches", data)
+      this.matches=data;
+    }, error => {
+      Swal.fire('Oops...', 'error en datos ingresados', 'error');
+      console.log('datadssd', error);
+    });
+/*
+    var newArray = this.solicitudes.filter(function (el) {
+        return el.event_state != true
+      }
+    );
+          console.log("filtrado",newArray)
+*/
+  }
+
+
   verSolicitud(solicitud: any) {
-    this.route.navigate(['notifications',solicitud.id]);
+    this.route.navigate(['notifications', solicitud.id]);
   }
 }
