@@ -1,0 +1,39 @@
+
+<mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
+  <br>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>{{user.first_name}}</mat-card-title>
+  </mat-card-header>
+
+  <br>
+  <mat-card-content>
+
+      <swiper
+    [spaceBetween]="30"
+    [pagination]="{
+      clickable: true
+    }"
+    class="mySwiper"
+  >
+
+
+      <ng-template swiperSlide *ngFor="let image of fotos, let i=index;">
+        <img mat-card-image src="{{image.image}}" alt="Photo of a Shiba Inu"></ng-template>
+
+
+  </swiper>
+
+
+    <p>
+      <b>Acerca mio:</b><br>
+      {{user.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions style="text-align: center">
+    <button mat-button >Cancelar</button>
+    <button mat-button >Gotogether!</button>
+  </mat-card-actions>
+
+</mat-card>
+

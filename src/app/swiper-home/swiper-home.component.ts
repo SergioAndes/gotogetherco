@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import SwiperCore, {Pagination} from 'swiper';
 import Swal from "sweetalert2";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EventoService} from "../services/evento.service";
 import {UserService} from "../services/user.service";
 
@@ -22,6 +22,8 @@ SwiperCore.use([Pagination]);
 
 export class SwiperHomeComponent implements OnInit {
   public eventos: Array<Evento> = [];
+  public registerForm: FormGroup;
+  public userid;
 
   contador: any = 0;
 
@@ -29,6 +31,9 @@ export class SwiperHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const user = localStorage.getItem('user')
+    const userparse = JSON.parse(user)
+    this.userid=userparse.id
     this.getEventos()
 
   }
@@ -42,9 +47,9 @@ export class SwiperHomeComponent implements OnInit {
   getEventos() {
     this.eventoService.getEventos().subscribe(data => {
       data.forEach(element => {
-
+        console.log("evento",data)
         this.userService.getUserById(element.user_id).subscribe(dataz => {
-          console.log("dataz",dataz)
+          console.log("user",dataz)
           this.userService.getImages(dataz[0].id).subscribe(datax => {
             console.log("perfiles",datax)
             const evento = new Evento();
@@ -66,6 +71,19 @@ export class SwiperHomeComponent implements OnInit {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
     });
+  }
+
+  postulate(eventoid:any) {
+    console.log("usurio",this.userid)
+    console.log("evento",eventoid)
+    this.eventoService.createRequest(eventoid,this.userid).subscribe(data => {
+      console.log("posti",data)
+      Swal.fire('success', 'Postulacion exitosa! Cruza los dedos para que acepten tu solicitd', 'success');
+    }, error => {
+      Swal.fire('Oops...', 'error en datos ingresados', 'error');
+      console.log('datadssd', error);
+    });
+
   }
 }
 

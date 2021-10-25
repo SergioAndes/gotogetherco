@@ -51,11 +51,11 @@ export class ProfileComponent implements OnInit {
         stack.push('https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg')
         this.imagesarray = stack;
       } else {
-                if(this.description!=""){
+        if(this.description!=""){
 
         }
         fotos.forEach(element =>
-          stack.push("https://go-together-backend.herokuapp.com" + element.image));
+          stack.push(element.image));
         this.imagesarray = stack;
       }
 

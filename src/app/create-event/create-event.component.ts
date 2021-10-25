@@ -31,6 +31,7 @@ export class CreateEventComponent implements OnInit {
       user_id: [userparse.id],
       subscription_date: ['2021-02-02'],
       conditions: [1],
+      name: ['',[Validators.required]],
     });
   }
 

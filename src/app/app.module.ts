@@ -25,10 +25,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -43,7 +48,9 @@ import {MatDividerModule} from "@angular/material/divider";
     EventosManagerComponent,
     ProfileComponent,
     EditProfileComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    NotificationsComponent,
+    VerSolicitudComponent
   ],
   imports: [
     BrowserModule,
@@ -62,10 +69,23 @@ import {MatDividerModule} from "@angular/material/divider";
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    MatRippleModule
 
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  entryComponents: [NotificationsComponent],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: MatDialogRef, useValue: {}},
+    {provide: MAT_DIALOG_DATA, useValue: {}},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
