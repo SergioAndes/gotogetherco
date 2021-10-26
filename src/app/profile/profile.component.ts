@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
     this.description = userparse.description;
     this.id = userparse.id;
     this.getImages();
+
   }
 
   public getImages() {
@@ -43,15 +44,14 @@ export class ProfileComponent implements OnInit {
       this.imagesarray = data
       if (fotos.length < 1) {
         Swal.fire({
-  title: "Bienvenido a GoTogether!",
-  text: "Antes de empezar, por favor actualiza tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
-  icon: "info",
-});
-
+          title: "Bienvenido a GoTogether!",
+          text: "Antes de empezar, por favor actualiza tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
+          icon: "info",
+        });
         stack.push('https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg')
         this.imagesarray = stack;
       } else {
-        if(this.description!=""){
+        if (this.description != "") {
 
         }
         fotos.forEach(element =>

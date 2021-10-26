@@ -21,14 +21,15 @@ export class UserService {
   }
 
   updateUser(form: any, id: any): Observable<any> {
-    console.log("token",this.token);
-    let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
+    const token = localStorage.getItem('token');
+    console.log("token",token);
+    let headers = new HttpHeaders({'Authorization': 'Token ' + token});
     return this.http.patch(this.URL_HOST + 'users/update/'+id+'/', form,{'headers': headers});
   }
 
   uploadImage(form: any): Observable<any> {
-    console.log("token",this.token);
-    let headers = new HttpHeaders({'Authorization': 'Token ' + this.token});
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders({'Authorization': 'Token ' + token});
     return this.http.post(this.URL_HOST + 'users/profile/new/', form,{'headers': headers});
   }
 
