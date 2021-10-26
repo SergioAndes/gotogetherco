@@ -52,6 +52,10 @@ textarea:focus {
     height: 43px;
     cursor: pointer
 }
+.btn-block[disabled] {
+    /* styles when the element is disabled */
+    background-color: #ddd;
+}
 
 .btn-block:hover {
     color: #fff !important

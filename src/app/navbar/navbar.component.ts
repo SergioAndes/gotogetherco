@@ -28,4 +28,8 @@ export class NavbarComponent implements OnInit {
   goToEventManare() {
     this.route.navigate(['eventos-manager']);
   }
+
+  goHome() {
+    this.route.navigate(['swiper']);
+  }
 }

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {UserService} from "../services/user.service";
 import {EventoService} from "../services/evento.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-event',
@@ -13,7 +14,7 @@ export class CreateEventComponent implements OnInit {
 
   public registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private eventoService: EventoService) {
+  constructor(private route: Router,private formBuilder: FormBuilder,private eventoService: EventoService) {
   }
 
   ngOnInit(): void {
@@ -40,6 +41,7 @@ export class CreateEventComponent implements OnInit {
       console.log('logo_asamblea', event.target.files[0])
       const reader = new FileReader();
       reader.readAsDataURL(file);
+
       reader.onload = () => {
         this.registerForm.get('image').setValue(reader.result.toString().split('base64,')[1]);
       }
@@ -50,9 +52,23 @@ export class CreateEventComponent implements OnInit {
     let a=this.registerForm.get('event_date').value.toISOString().slice(0, 10);;
     this.registerForm.get('event_date').setValue(a)
     console.log("creacr",this.registerForm.value)
+                Swal.fire({
+        title: 'Uploading',
+        html: 'Por favor espera mientras creamos tu evento',
+        timerProgressBar: true,
+        didOpen: () => {
+    Swal.showLoading()
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+      });
     this.eventoService.createEvent(this.registerForm.value).subscribe(data => {
       console.log("darta resul",data )
       Swal.fire('Success', 'Evento Creado Exitosamente', 'success');
+      this.route.navigate(['eventos-manager']);
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);

@@ -68,7 +68,7 @@
           </div>
           <div class="row justify-content-end">
             <div class="form-group col-sm-6">
-              <button type="submit" class="btn-block btn-primary" (click)="createEvent()">Crear evento</button>
+              <button type="submit" class="btn-block btn-primary" [disabled]="!registerForm.valid" (click)="createEvent()">Crear evento</button>
             </div>
           </div>
 

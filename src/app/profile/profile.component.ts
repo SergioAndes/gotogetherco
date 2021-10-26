@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   imagesarray: any;
 
   public registerForm: FormGroup;
+  public test: boolean;
 
   constructor(private route: Router, private formBuilder: FormBuilder, private authService: UserService) {
   }
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
         });
         stack.push('https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg')
         this.imagesarray = stack;
+
       } else {
         if (this.description != "") {
 
@@ -66,6 +68,9 @@ export class ProfileComponent implements OnInit {
   }
 
   goToEdit() {
+
+
+
     this.route.navigate(['editProfile']);
   }
 
@@ -75,6 +80,19 @@ export class ProfileComponent implements OnInit {
       console.log('logo_asamblea', event.target.files[0])
       const reader = new FileReader();
       reader.readAsDataURL(file);
+      Swal.fire({
+        title: 'Uploading',
+        html: 'Por favor espera mientras subimos tu imagen',
+        timerProgressBar: true,
+        didOpen: () => {
+    Swal.showLoading()
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+      });
       reader.onload = () => {
         this.registerForm.get('image').setValue(reader.result.toString().split('base64,')[1]);
         this.authService.uploadImage(this.registerForm.value).subscribe(data => {
