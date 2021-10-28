@@ -99,6 +99,8 @@
   text-align: end;
 }
 ::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+  padding-top: 24px !important;
   background: transparent !important;
   box-shadow: 0px 0px 0px red !important;
 }

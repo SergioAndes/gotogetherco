@@ -91,3 +91,9 @@
   background-color: antiquewhite;
   color: black;
 }
+@media only screen and (max-device-width: 480px) {
+  .mat-card {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

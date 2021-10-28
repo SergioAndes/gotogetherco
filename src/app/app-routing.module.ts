@@ -7,6 +7,9 @@ import {ChatlistComponent} from "./chatlist/chatlist.component";
 import {RegisterComponent} from "./register/register.component";
 import {EventosManagerComponent} from "./eventos-manager/eventos-manager.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {EditProfileComponent} from "./edit-profile/edit-profile.component";
+import {CreateEventComponent} from "./create-event/create-event.component";
+import {NotificationsComponent} from "./notifications/notifications.component";
 
 
 
@@ -17,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {path: 'login', component: LoginComponent},
@@ -26,6 +29,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'eventos-manager', component: EventosManagerComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'editProfile', component: EditProfileComponent},
+  {path: 'createEvent', component: CreateEventComponent},
+  {path: 'notifications/:idEvento', component: NotificationsComponent},
 ];
 
 @NgModule({

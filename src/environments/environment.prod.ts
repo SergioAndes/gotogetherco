@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlBack: 'https://go-together-backend.herokuapp.com/'
 };
