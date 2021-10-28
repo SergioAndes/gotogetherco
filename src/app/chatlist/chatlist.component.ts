@@ -25,7 +25,7 @@ export class ChatlistComponent implements OnInit {
   newMessage = '';
   channelList = []// = ["pedro", "pablo", "camila"]; //mockData
 
-  currentUser: string = "tmp";
+  currentUser: string = JSON.parse(localStorage.getItem("user")).username;
   userToChat: string;
   room = "room1";
 
@@ -90,7 +90,7 @@ export class ChatlistComponent implements OnInit {
   }
 
   onSelect(channel) {
-    console.log(channel)
+    //console.log(channel)
     //Load chats
 
     this.messages = [] //TODO: Load messages from that user
@@ -104,7 +104,7 @@ export class ChatlistComponent implements OnInit {
     let route = this.getMessagesPath + this.userToChat;
     this.http.get(route, this.httpOptions).subscribe(msgs => {
       this.messages = Object.keys(msgs).map(key => (msgs[key]));
-      //console.log(this.messages);
+      console.log(this.messages);
     });
   }
 
