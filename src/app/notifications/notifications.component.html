@@ -1,0 +1,8 @@
+<app-navbar></app-navbar>
+
+<mat-card swiperSlide *ngFor="let solicitud of solicitudes, let i=index;" class="example-card" >
+  <mat-card-header (click)="verSolicitud(solicitud)">
+      <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + solicitud.foto  + ')'"></div>
+    <mat-card-title>{{solicitud.users.user_id.first_name}}</mat-card-title>
+  </mat-card-header>
+</mat-card>

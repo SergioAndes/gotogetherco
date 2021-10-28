@@ -24,6 +24,18 @@ import { EventosManagerComponent } from './eventos-manager/eventos-manager.compo
 import {HttpClientModule} from "@angular/common/http";
 import {MatSelectModule} from "@angular/material/select";
 import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatDividerModule} from "@angular/material/divider";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -38,7 +50,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ChatlistComponent,
     RegisterComponent,
     EventosManagerComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditProfileComponent,
+    CreateEventComponent,
+    NotificationsComponent,
+    VerSolicitudComponent
   ],
   imports: [
     BrowserModule,
@@ -53,9 +69,28 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HttpClientModule,
     MatSelectModule,
     FormsModule,
-    SocketIoModule.forRoot(config)
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatDialogModule,
+    SocketIoModule.forRoot(config),
+
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    MatRippleModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  entryComponents: [NotificationsComponent],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {provide: MatDialogRef, useValue: {}},
+    {provide: MAT_DIALOG_DATA, useValue: {}},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

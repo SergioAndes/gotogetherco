@@ -1,40 +1,176 @@
 <app-navbar></app-navbar>
 <br>
-<br>
+<br><br>
+<mat-card id="just_load_please"  class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
+  <br>
+  <mat-card-header>
 
-        <mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{nombre}}</mat-card-title>
-            <mat-card-subtitle style="color: black">GoTogether</mat-card-subtitle>
-          </mat-card-header>
-
+    <mat-card-title >{{nombre}}</mat-card-title>
+  </mat-card-header>
 
 
-          <swiper
-    [spaceBetween]="30"
-    [pagination]="{
+  <swiper style="border-radius:4px;width: 100%;height: 400px;"
+          [spaceBetween]="30"
+          [pagination]="{
       clickable: true
     }"
-    class="mySwiper"
+          class="mySwiper"
   >
-    <ng-template swiperSlide>    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-               alt="Photo of a Shiba Inu"></ng-template
-    ><ng-template swiperSlide>    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-               alt="Photo of a Shiba Inu"></ng-template
-    ><ng-template swiperSlide>    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-               alt="Photo of a Shiba Inu"></ng-template
-    >
+
+
+    <ng-template swiperSlide *ngFor="let image of imagesarray, let i=index;">
+      <img mat-card-image src="{{image}}" alt="Photo of a Shiba Inu"></ng-template>
+
+
   </swiper>
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>Editar</button>
-          </mat-card-actions>
-          </mat-card>
+  <br>
+  <mat-card-content>
+    <p>
+      {{description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="goToEdit()">Editar</button>
+    <button style="text-align: right" mat-button (click)="uploader.click()">Subir Fotos</button>
+    <input type="file" hidden id="file" hiden #uploader (change)="subirImagen($event)" class="fadeIn second"
+           name="login"
+           placeholder="logo_asamblea">
+  </mat-card-actions>
+
+</mat-card>
+<div *ngIf="test==false" class="loadingio-spinner-spinner-g4aoyyu40mm">
+  <div class="ldio-f4ynw4u92nr">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+
+<style type="text/css">
+  @keyframes ldio-f4ynw4u92nr {
+    0% {
+      opacity: 1
+    }
+    100% {
+      opacity: 0
+    }
+  }
+
+  .ldio-f4ynw4u92nr div {
+    left: 94px;
+    top: 48px;
+    position: absolute;
+    animation: ldio-f4ynw4u92nr linear 1s infinite;
+    background: #fe718d;
+    width: 12px;
+    height: 24px;
+    border-radius: 6px / 12px;
+    transform-origin: 6px 52px;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -0.9166666666666666s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(2) {
+    transform: rotate(30deg);
+    animation-delay: -0.8333333333333334s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(3) {
+    transform: rotate(60deg);
+    animation-delay: -0.75s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(4) {
+    transform: rotate(90deg);
+    animation-delay: -0.6666666666666666s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(5) {
+    transform: rotate(120deg);
+    animation-delay: -0.5833333333333334s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(6) {
+    transform: rotate(150deg);
+    animation-delay: -0.5s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(7) {
+    transform: rotate(180deg);
+    animation-delay: -0.4166666666666667s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(8) {
+    transform: rotate(210deg);
+    animation-delay: -0.3333333333333333s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(9) {
+    transform: rotate(240deg);
+    animation-delay: -0.25s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(10) {
+    transform: rotate(270deg);
+    animation-delay: -0.16666666666666666s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(11) {
+    transform: rotate(300deg);
+    animation-delay: -0.08333333333333333s;
+    background: #fe718d;
+  }
+
+  .ldio-f4ynw4u92nr div:nth-child(12) {
+    transform: rotate(330deg);
+    animation-delay: 0s;
+    background: #fe718d;
+  }
+
+  .loadingio-spinner-spinner-g4aoyyu40mm {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .ldio-f4ynw4u92nr {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+
+  .ldio-f4ynw4u92nr div {
+    box-sizing: content-box;
+  }
+
+  /* generated by https://loading.io/ */
+</style>
 

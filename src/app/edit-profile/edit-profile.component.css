@@ -27,9 +27,8 @@
 }
 
 .example-header-image {
-
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
-
 }
 
 .swiper {
@@ -91,14 +90,4 @@
 .mat-card{
   background-color: antiquewhite;
   color: black;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.mat-card-actions{
-  text-align: end;
-}
-::ng-deep.mat-dialog-container {
-  background: transparent !important;
-  box-shadow: 0px 0px 0px red !important;
 }

@@ -2,48 +2,83 @@
 
 <br>
 <br>
-<swiper [slidesPerView]="1" [spaceBetween]="30" [pagination]="{clickable: true}" class="mySwiper">
+
+<swiper [slidesPerView]="1" (slideChange)="onSwiper($event)" [spaceBetween]="30" [pagination]="{clickable: true}"
+        class="mySwiper">
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
-        <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-               alt="Photo of a Shiba Inu">
-          <mat-card-content>
+
+    <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
+      <br>
+      <mat-card-header>
+
+        <mat-card-title>{{evento.evento.name}}</mat-card-title>
+
+      </mat-card-header>
+
+      <br>
+
+      <mat-card style="margin-left: auto;margin-right: auto; overflow: hidden;  " class="example-card"
+                [class.mat-elevation-z8]=true>
+        <img mat-card-image style="max-height: 450px;"
+             src="{{evento.evento.image}}"
+             alt="Photo of a Shiba Inu">
+              <mat-card-content>
+
+        <mat-grid-list cols="2" rowHeight="3:1">
+          <mat-grid-tile>
+            <mat-icon>calendar_today</mat-icon>
+            <mat-label> &nbsp;{{evento.evento.event_date}}</mat-label>
+            <br><br></mat-grid-tile>
+          <mat-grid-tile>
+            <mat-icon>access_time</mat-icon>
+            <mat-label> &nbsp;{{evento.evento.event_hour}}</mat-label>
+            <br><br></mat-grid-tile>
+        </mat-grid-list>
+        <mat-label style="margin: 0 16px;"><b>Descripcion</b></mat-label>
+        <br><br>
+        <p style="margin: 0 16px;">
+          {{evento.evento.description}}
+        </p>
+      </mat-card-content>
+              <mat-card-actions style="text-align: center;">
+        <button mat-button type="submit" (click)="postulate(evento.evento.id)"
+                style="    border: 1px solid #ff572296!important;">Postularse
+        </button>
+      </mat-card-actions>
+      </mat-card>
+
+
+      <br>
+      <mat-card [class.mat-elevation-z8]=true style="margin-left: auto;margin-right: auto; padding-left: 0px;padding-top: 0px;padding-right: 0px;" class="example-card" *ngIf="evento.images.length>0">
+<br>
+      <mat-card-header>
+
+        <mat-card-title>{{evento.usuario.first_name}}</mat-card-title>
+
+      </mat-card-header>
+        <br>
+        <div  style=" overflow: hidden; height: 450px;max-height: 450px;">
+          <img mat-card-image src="{{evento.images[0].image}}">
+        </div>
+        <br>
+          <mat-card-content style="padding-left: 10px">
             <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
+              {{evento.usuario.description}}
             </p>
           </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
 
-          <mat-card class="example-card" *ngFor="let evento of eventos, let i=index;" [class.mat-elevation-z8]=true>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-               alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
+      </mat-card>
+      <br>
+      <mat-card style="margin-left: auto;margin-bottom:10px; margin-right: auto; overflow: hidden; height: 450px;max-height: 450px;" class="example-card"
+                *ngFor="let foto of evento.images| slice:1; let i = index;" [class.mat-elevation-z8]=true>
+        <img mat-card-image src="{{foto.image}}"
+             alt="Photo of a Shiba Inu">
 
-        </mat-card>
+      </mat-card>
 
-        </mat-card>
+    </mat-card>
 
-      </ng-template>
+  </ng-template>
 </swiper>
 

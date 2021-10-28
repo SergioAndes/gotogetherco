@@ -19,6 +19,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ff9966;
 }
+
 .example-card {
   max-width: 400px;
   margin-left: auto;
@@ -62,6 +63,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -87,7 +89,20 @@
 }
 
 
-.mat-card{
+.mat-card {
   background-color: antiquewhite;
   color: black;
 }
+
+@media only screen and (max-device-width: 480px) {
+  .mat-card {
+    background-color: antiquewhite;
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  /* Styles */
+
+}
+
