@@ -35,11 +35,7 @@
     "@angular/router": "~12.2.5",
     "@angular/service-worker": "~12.2.5",
     "express": "^4.17.1",
-
-    "ngx-socket-io": "^4.1.0",
-
     "ngx-material-timepicker": "^5.5.3",
-
     "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "save": "^2.4.0",

@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
@@ -37,8 +35,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +64,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
-    FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatNativeDateModule,
@@ -76,7 +71,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatGridListModule,
     MatDividerModule,
     MatDialogModule,
-    SocketIoModule.forRoot(config),
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -85,6 +79,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       registrationStrategy: 'registerWhenStable:30000'
     }),
     MatRippleModule
+
   ],
   entryComponents: [NotificationsComponent],
   providers: [
