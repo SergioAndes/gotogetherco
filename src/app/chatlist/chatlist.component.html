@@ -1,65 +1,96 @@
-<app-navbar></app-navbar>
+<!-- Toolbar -->
+<div class="col-5 px-0" style="margin: auto ;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
+            <div class="bg-white">
 
-<br>
-<br>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-  <!-- Page header end -->
-  <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
-    <ul class="users">
-      <li style="border-bottom: 3px solid silver;" class="person" data-chat="person1">
-        <div class="user">
-        </div>
-        <p class="name-time">
-          <span class="name">INVITACIONES</span>
-        </p>
-      </li>
-      <li class="person" data-chat="person1" >
-        <div class="user">
-          <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-          <span class="status busy"></span>
-        </div>
-        <p class="name-time">
-          <span class="name">Steve Bangalter</span>
-          <span class="time" style="padding-left: 25px">15/02/2019</span>
-        </p>
-      </li>
-      <li class="person" data-chat="person1">
-        <div class="user">
-          <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-          <span class="status busy"></span>
-        </div>
-        <p class="name-time">
-          <span class="name">Steve Bangalter</span>
-          <span class="time" style="padding-left: 25px">15/02/2019</span>
-        </p>
-      </li>
-      <li class="person" data-chat="person1">
-        <div class="user">
-          <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-          <span class="status busy"></span>
-        </div>
-        <p class="name-time">
-          <span class="name">Steve Bangalter</span>
-          <span class="time" style="padding-left: 25px">15/02/2019</span>
-        </p>
-      </li>
-      <li class="person" data-chat="person1">
-        <div class="user">
-          <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-          <span class="status busy"></span>
-        </div>
-        <p class="name-time">
-          <span class="name">Steve Bangalter</span>
-          <span class="time" style="padding-left: 25px">15/02/2019</span>
-        </p>
-      </li>
+              <div class="bg-gray px-4 py-2 bg-light">
+                <p class="h5 mb-0 py-1">Chat List</p>
+              </div>
 
-    </ul>
+              <div *ngFor="let match of users, let i=index;" class="messages-box">
+                <a data-toggle="modal" data-target="#myModal" (click)="onSelect(match)"
+                   class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                  <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user"
+                                          width="50"
+                                          class="rounded-circle">
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0">{{match.event.name}}</h6><small class="small font-weight-bold">14 Dec</small>
+                      </div>
+                      <p class="font-italic text-muted mb-0 text-small">{{match.user.first_name}}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
 
-  </mat-card>
-  <!-- Content wrapper start -->
+<div class="modal fade  bd-example-modal-lg" id="myModal" role="dialog">
+  <div class="modal-dialog">
 
-  <!-- Content wrapper end -->
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Chatting with {{currentUser}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="mesgs" style="width: 100%">
+          <div class="msg_history" >
+            <li class="message" *ngFor="let message of messages">
+              <div
+                *ngIf="
+                  message.from === currentUser;
+                  then outgoing_msg;
+                  else incoming_msg
+                "
+              ></div>
+              <ng-template  #outgoing_msg>
+                <div class="media w-50 ml-auto mb-3">
+                  <div class="media-body">
+                    <div class="bg-primary rounded py-2 px-3 mb-2">
+                      <p style=" word-break: break-all;white-space: normal;"
+                         class="text-small mb-0 text-white">{{ message.text }}</p>
+                    </div>
+                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                  </div>
+                </div>
+              </ng-template>
 
+
+              <ng-template #incoming_msg>
+                <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg"
+                                                  alt="user"
+                                                  width="50" class="rounded-circle">
+                  <div class="media-body ml-3">
+                    <div class="bg-light rounded py-2 px-3 mb-2">
+                      <p class="text-small mb-0 text-muted">{{ message.text }}</p>
+                    </div>
+                    <p class="small text-muted">12:00 PM | Aug 13</p>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+          </div>
+          <div class="type_msg">
+            <form class="input_msg_write" (ngSubmit)="sendMessage()">
+              <input
+                type="text"
+                class="write_msg"
+                placeholder="Type a message"
+                name="newMessage"
+                [(ngModel)]="newMessage"
+              />
+              <button class="msg_send_btn" type="button" (click)="sendMessage()">
+                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+      </div>
+    </div>
+
+  </div>
 </div>
+

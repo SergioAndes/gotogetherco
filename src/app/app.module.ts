@@ -34,7 +34,9 @@ import { environment } from '../environments/environment';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-
+import { FormsModule } from '@angular/forms';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://ec2-107-23-127-251.compute-1.amazonaws.com:3000', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +73,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
     MatGridListModule,
     MatDividerModule,
     MatDialogModule,
+    FormsModule,
+    SocketIoModule.forRoot(config),
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

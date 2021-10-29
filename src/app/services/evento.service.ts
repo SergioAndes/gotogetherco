@@ -35,7 +35,7 @@ export class EventoService {
     return this.http.post(this.URL_HOST + 'events/AcceptEventPostulation',{id:idSolicitud});
   }
 
-  getMatches(userid: any){
+  getMatches(userid: any): Observable<any>{
     return this.http.get(this.URL_HOST + 'events/GetMatchEventxUser/'+userid);
   }
 

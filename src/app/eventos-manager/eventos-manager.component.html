@@ -9,20 +9,18 @@
 <mat-divider></mat-divider>
 <br>
 
-<div *ngIf="visible==2">
-<mat-card swiperSlide *ngFor="let solicitud of matches, let i=index;" class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{solicitud.name}}</mat-card-title>
-    <mat-card-subtitle style="color: #343a40">{{solicitud.event_date}}</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
+<div *ngIf="visible==1">
+  <mat-card swiperSlide *ngFor="let solicitud of solicitudes, let i=index;" class="example-card">
+    <mat-card-header (click)="verSolicitud(solicitud)">
+      <mat-card-title>{{solicitud.name}}</mat-card-title>
+      <mat-card-subtitle style="color: #343a40">{{solicitud.event_date}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
 </div>
 
-<div *ngIf="visible==1">
-<mat-card swiperSlide *ngFor="let solicitud of solicitudes, let i=index;" class="example-card">
-  <mat-card-header (click)="verSolicitud(solicitud)">
-    <mat-card-title>{{solicitud.name}}</mat-card-title>
-    <mat-card-subtitle style="color: #343a40">{{solicitud.event_date}}</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-</div>
+<!-- Users box-->
+
+<!-- Chat Box-->
+
+
+<app-chatlist *ngIf="visible==2"  [users]="matches"></app-chatlist>
