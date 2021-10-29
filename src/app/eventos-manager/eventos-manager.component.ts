@@ -51,34 +51,50 @@ export class EventosManagerComponent implements OnInit {
 
   getMatches() {
     this.eventoService.getMatches(this.id).subscribe(data => {
-      console.log(data)
-      console.log("id usuario",this.id)
+      console.log("Matches", data)
+      console.log("id usuario", this.id)
       const match = new Match()
       data.EventMatch.forEach(element => {
-        console.log("entra a event match")
-        if (element.EventRequestUser.id == this.id) {
-          match.user = element.EventUser[0]
-        } else {
-          match.user = element.EventRequestUser[0]
+        match.event = element.Event[0]
+        console.log("entra a event match", element)
+        let user = 0;
+        let requester = 0;
+        console.log(element.EventRequestUser.length)
+        console.log(element.EventUser.length)
+        if (element.EventRequestUser.length != 0 && element.EventUser.length != 0) {
+          console.log("entra a event 11", element)
+          if (element.EventUser[0].id != this.id) {
+            match.user = element.EventUser[0]
+            this.matches.push(match)
+          } else {
+            match.user = element.EventRequestUser[0]
+            this.matches.push(match)
+          }
         }
-        match.event=element.Event[0]
-        this.matches.push(match)
+
+        console.log("Mtaches actualizados 1", this.matches)
       });
       data.EventRequestMatch.forEach(element => {
-        console.log("entra a EventRequestMatch",element)
-        if (element.EventRequestUser[0].id == this.id) {
-          match.user = element.EventUser[0]
-        } else {
-          match.user = element.EventRequestUser[0]
+        match.event = element.Event[0]
+        if (element.EventRequestUser.length != 0 && element.EventUser.length != 0) {
+          console.log("entra a event 11", element)
+          if (element.EventUser[0].id != this.id) {
+            match.user = element.EventUser[0]
+            this.matches.push(match)
+          } else {
+            match.user = element.EventRequestUser[0]
+            this.matches.push(match)
+          }
         }
-        match.event=element.Event[0]
-        this.matches.push(match)
+
       });
       console.log("Mtaches actualizados", this.matches)
+
 
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
+
     });
     /*
         var newArray = this.solicitudes.filter(function (el) {
