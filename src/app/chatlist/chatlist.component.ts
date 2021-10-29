@@ -101,6 +101,7 @@ export class ChatlistComponent implements OnInit, OnChanges  {
     //Load chats
 
     this.messages = [] //TODO: Load messages from that user
+    this.messages = [] //TODO: Load messages from that user
     this.userToChat = channel.user.username;
 
     this.getMessagesFromServer();

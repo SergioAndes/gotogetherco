@@ -53,12 +53,11 @@ export class EventosManagerComponent implements OnInit {
     this.eventoService.getMatches(this.id).subscribe(data => {
       console.log("Matches", data)
       console.log("id usuario", this.id)
-      const match = new Match()
+
       data.EventMatch.forEach(element => {
+        const match = new Match()
         match.event = element.Event[0]
         console.log("entra a event match", element)
-        let user = 0;
-        let requester = 0;
         console.log(element.EventRequestUser.length)
         console.log(element.EventUser.length)
         if (element.EventRequestUser.length != 0 && element.EventUser.length != 0) {
@@ -75,6 +74,7 @@ export class EventosManagerComponent implements OnInit {
         console.log("Mtaches actualizados 1", this.matches)
       });
       data.EventRequestMatch.forEach(element => {
+         const match = new Match()
         match.event = element.Event[0]
         if (element.EventRequestUser.length != 0 && element.EventUser.length != 0) {
           console.log("entra a event 11", element)
