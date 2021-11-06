@@ -10,6 +10,11 @@
                <mat-hint style="color: black"><b>Genero</b></mat-hint><br><br>
             <mat-card-subtitle style="color: black"><input formControlName="sex"  style="background: transparent" value="{{sex}}" matInput></mat-card-subtitle>
 
+            <label class="form-control-label px-3">Fecha de nacimiento</label>
+<mat-card-subtitle  style="color: black"><input style="background: transparent" formControlName="birth_date"  matInput [matDatepicker]="picker">
+                           <mat-datepicker-toggle style="color: #f75959;visibility: visible" matSuffix
+                                                  [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker style="color: #f75959"></mat-datepicker><br></mat-card-subtitle>
 
   <mat-label><b>Descripcion</b></mat-label><br><br>
 
@@ -32,3 +37,5 @@
           </mat-card>
 
 </form>
+
+

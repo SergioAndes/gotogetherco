@@ -25,7 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
@@ -89,7 +89,9 @@ const config: SocketIoConfig = { url: 'http://ec2-107-23-127-251.compute-1.amazo
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MatDialogRef, useValue: {}},
-    {provide: MAT_DIALOG_DATA, useValue: {}},],
+    {provide: MAT_DIALOG_DATA, useValue: {}},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

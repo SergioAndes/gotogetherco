@@ -42,8 +42,6 @@ export class VerSolicitudComponent implements OnInit {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
     });
-
   }
-
 
 }

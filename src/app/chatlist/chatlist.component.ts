@@ -30,7 +30,7 @@ export class ChatlistComponent implements OnInit, OnChanges  {
   userToChat: string;
   room = "room1";
 
-  getMessagesPath = "http://ec2-107-23-127-251.compute-1.amazonaws.com:3000/messages?me="+this.currentUser+"&"+"someone=";
+  getMessagesPath = "https://chat-nodejs-backend.herokuapp.com/messages?me="+this.currentUser+"&"+"someone=";
 
   //const user = { id, username, room, connected: true }; Example
   //const message = {username, text, createdAt}

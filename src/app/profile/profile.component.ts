@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   description: string;
   id: any;
   imagesarray: any;
+  edad:any;
 
   public registerForm: FormGroup;
   public test: boolean;
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit {
     this.nombre = userparse.first_name;
     this.description = userparse.description;
     this.id = userparse.id;
+    this.edad = userparse.age;
     this.getImages();
 
   }
