@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import SwiperCore, {Pagination} from 'swiper';
+import SwiperCore, {EffectCards, EffectCoverflow, EffectFlip, Navigation, Pagination} from 'swiper';
 import Swal from "sweetalert2";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EventoService} from "../services/evento.service";
@@ -10,9 +10,9 @@ class Evento {
   usuario: any;
   images: any;
 }
+SwiperCore.use([EffectCards]);
 
-
-SwiperCore.use([Pagination]);
+//SwiperCore.use([Pagination]);
 
 @Component({
   selector: 'app-swiper-home',

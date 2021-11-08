@@ -36,7 +36,7 @@ import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://ec2-107-23-127-251.compute-1.amazonaws.com:3000', options: {} };
+const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com/', options: {} };
 @NgModule({
   declarations: [
     AppComponent,

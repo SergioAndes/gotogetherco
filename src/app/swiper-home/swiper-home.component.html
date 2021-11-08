@@ -1,10 +1,8 @@
 <app-navbar></app-navbar>
 
-<br>
-<br>
 
-<swiper [slidesPerView]="1" (slideChange)="onSwiper($event)" [spaceBetween]="30" [pagination]="{clickable: true}"
-        class="mySwiper">
+
+ <swiper [effect]="'cards'" [grabCursor]="true" class="mySwiper">
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
 
