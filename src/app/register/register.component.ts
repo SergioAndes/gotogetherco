@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(){
+    this.registerForm.get("birth_date").setValue(this.registerForm.get("birth_date").value.toISOString().split('T')[0]);
     console.log("log",this.registerForm.value)
     this.authService.registerUser(this.registerForm.value).subscribe(data => {
       Swal.fire('success', 'Usuario registrado exitosamente!', 'success');
