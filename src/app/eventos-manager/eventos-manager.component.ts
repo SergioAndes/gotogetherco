@@ -35,6 +35,15 @@ export class EventosManagerComponent implements OnInit {
   }
 
   vibilidad(entero: any) {
+    if (this.solicitudes.length == 0 && entero == 1) {
+      Swal.fire('Oops...', 'No tienes eventos creados aun, dale click al icono de creacion en la parte superior' +
+        ' y crea tu primer evento ', 'info');
+    }
+    if (this.matches.length == 0 && entero == 2) {
+      Swal.fire('Oops...', 'Parece que aun no tienes chats, postulate a mas eventos y cruza los dedos para ' +
+        'que alguien acepte tu solicitud ', 'info');
+    }
+
     this.visible = entero;
   }
 
@@ -74,7 +83,7 @@ export class EventosManagerComponent implements OnInit {
         console.log("Mtaches actualizados 1", this.matches)
       });
       data.EventRequestMatch.forEach(element => {
-         const match = new Match()
+        const match = new Match()
         match.event = element.Event[0]
         if (element.EventRequestUser.length != 0 && element.EventUser.length != 0) {
           console.log("entra a event 11", element)
@@ -107,6 +116,18 @@ export class EventosManagerComponent implements OnInit {
 
 
   verSolicitud(solicitud: any) {
-    this.route.navigate(['notifications', solicitud.id]);
+    this.eventoService.getSolicitudes(solicitud).subscribe(data => {
+      if(data.length==0){
+
+      }else{
+        this.route.navigate(['notifications', solicitud.id]);
+      }
+    }, error => {
+      Swal.fire('Oops...', 'parece que aun no hay personas interesadas en tu evento, dales un poco mas ' +
+          'de tiempo', 'info');
+      console.log('datadssd', error);
+
+    });
+
   }
 }
