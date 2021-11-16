@@ -116,7 +116,7 @@ export class EventosManagerComponent implements OnInit {
 
 
   verSolicitud(solicitud: any) {
-    this.eventoService.getSolicitudes(solicitud).subscribe(data => {
+        this.eventoService.getSolicitudes(solicitud.id).subscribe(data => {
       if(data.length==0){
 
       }else{
@@ -128,6 +128,5 @@ export class EventosManagerComponent implements OnInit {
       console.log('datadssd', error);
 
     });
-
   }
 }

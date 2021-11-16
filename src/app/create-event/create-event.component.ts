@@ -12,9 +12,12 @@ import {Router} from "@angular/router";
 })
 export class CreateEventComponent implements OnInit {
 
+
   public registerForm: FormGroup;
+  public visible: any;
 
   constructor(private route: Router,private formBuilder: FormBuilder,private eventoService: EventoService) {
+      this.visible=1;
   }
 
   ngOnInit(): void {
@@ -67,8 +70,17 @@ export class CreateEventComponent implements OnInit {
       });
     this.eventoService.createEvent(this.registerForm.value).subscribe(data => {
       console.log("darta resul",data )
-      Swal.fire('Success', 'Evento Creado Exitosamente', 'success');
-      this.route.navigate(['eventos-manager']);
+      const firstBrowse = localStorage.getItem('firstBrowse')
+      if(firstBrowse=='true'){
+        Swal.fire('Bien, tu evento ya se encuentra publicado', 'Ahora puedes mirar y postularte a planes' +
+          ' publicados por otros', 'success');
+        localStorage.setItem('firstBrowse', 'false');
+        this.route.navigate(['swiper']);
+      }else{
+        Swal.fire('Success', 'Evento Creado Exitosamente', 'success');
+        this.route.navigate(['swiper']);
+      }
+
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
@@ -76,5 +88,7 @@ export class CreateEventComponent implements OnInit {
   }
 
 
+  vibilidad(number: number) {
 
+  }
 }

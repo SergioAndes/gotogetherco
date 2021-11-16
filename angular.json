@@ -17,12 +17,13 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/firebase-messaging-sw.js",
+              "src/manifest.json",
               "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+              "src/assets"
             ],
+            "tsConfig": "tsconfig.app.json",
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
@@ -130,6 +131,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "gotogether"
 }

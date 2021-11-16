@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {AsyncPipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { SwiperHomeComponent } from './swiper-home/swiper-home.component';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +36,12 @@ import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {MessagingService} from "./messaging.service";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireMessagingModule} from "@angular/fire/messaging";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {MatTooltipModule} from "@angular/material/tooltip";
 const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com/', options: {} };
 @NgModule({
   declarations: [
@@ -74,6 +80,11 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
     MatDividerModule,
     MatDialogModule,
     FormsModule,
+    MatTooltipModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     SocketIoModule.forRoot(config),
 
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -82,11 +93,12 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+
     MatRippleModule
 
   ],
   entryComponents: [NotificationsComponent],
-  providers: [
+  providers: [MessagingService,AsyncPipe,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MatDialogRef, useValue: {}},
     {provide: MAT_DIALOG_DATA, useValue: {}},

@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(user, pass).subscribe(data => {
       console.log('urser', data);
       localStorage.setItem('token', data.token);
+      if(localStorage.getItem('firstBrowse')!='true'){
+        localStorage.setItem('firstBrowse', 'true');
+      }
+      if(localStorage.getItem('firstCreation')!='true'){
+        localStorage.setItem('firstCreation', 'true');
+      }
       localStorage.setItem('user',JSON.stringify(data.user));
       localStorage.setItem('images',JSON.stringify(data.profile));
       this.route.navigate(['profile']);

@@ -12,6 +12,12 @@
     "lite": "lite-server",
     "heroku-postbuild": "ng build --prod"
   },
+  "assets": [
+    "src/firebase-massaging-sw.js",
+    "src/manifest.json",
+    "src/favicon.ico",
+    "src/assets"
+  ],
   "styles": [
     "node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css"
   ],
@@ -28,6 +34,7 @@
     "@angular/compiler": "~12.2.5",
     "@angular/compiler-cli": "^12.2.5",
     "@angular/core": "~12.2.5",
+    "@angular/fire": "^5.4.0",
     "@angular/forms": "~12.2.5",
     "@angular/material": "^12.2.5",
     "@angular/platform-browser": "~12.2.5",
@@ -35,6 +42,7 @@
     "@angular/router": "~12.2.5",
     "@angular/service-worker": "~12.2.5",
     "express": "^4.17.1",
+    "firebase": "^7.24.0",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-socket-io": "^4.1.0",
     "path": "^0.12.7",

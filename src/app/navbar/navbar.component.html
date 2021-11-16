@@ -5,16 +5,16 @@
   <span style="pointer-events: auto;" (click)="goToSwiper()">GoTogether</span>
   <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon (click)="goHome()">home</mat-icon>
+    <mat-icon matTooltip="Ver planes" (click)="goHome()">home</mat-icon>
   </button>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon (click)="goToEventManare()">class</mat-icon>
+    <mat-icon matTooltip="Chat y notificaciones" (click)="goToEventManare()">class</mat-icon>
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon (click)="goToCreateEvent()" >add_circle_outline</mat-icon>
+    <mat-icon matTooltip="Crear plan" (click)="goToCreateEvent()" >add_circle_outline</mat-icon>
   </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon (click)="goToProfile()" >account_box</mat-icon>
+      <mat-icon matTooltip="Perfil" (click)="goToProfile()" >account_box</mat-icon>
   </button>
 </mat-toolbar>
     </nav>

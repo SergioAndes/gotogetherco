@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   description: string;
   id: any;
   imagesarray: any;
-  edad:any;
+  edad: any;
 
   public registerForm: FormGroup;
   public test: boolean;
@@ -30,16 +30,20 @@ export class ProfileComponent implements OnInit {
     });
 
     const user = localStorage.getItem('user')
+
     const userparse = JSON.parse(user)
     this.nombre = userparse.first_name;
     this.description = userparse.description;
     this.id = userparse.id;
     this.edad = userparse.age;
     this.getImages();
+    console.log("a", this.imagesarray)
+
 
   }
 
   public getImages() {
+        const firstCreation = localStorage.getItem('firstCreation')
     const stack = [];
     this.authService.getImages(this.id, localStorage.getItem('token')).subscribe(data => {
       console.log("foto", data.profiles)
@@ -48,7 +52,7 @@ export class ProfileComponent implements OnInit {
       if (fotos.length < 1) {
         Swal.fire({
           title: "Bienvenido a GoTogether!",
-          text: "Antes de empezar, por favor actualiza tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
+          text: "Antes de empezar, por favor edita tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
           icon: "info",
         });
         stack.push('https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg')
@@ -61,6 +65,15 @@ export class ProfileComponent implements OnInit {
         fotos.forEach(element =>
           stack.push(element.image));
         this.imagesarray = stack;
+        if (firstCreation == 'true' && this.imagesarray.length > 0) {
+          Swal.fire({
+            title: "Crea tu primer plan!",
+            html: "Ya estamos listos para salir al ruedo. <br> " +
+              "Dale click en el icono (+) que se encuentra en la parte superior derecha para crear un plan",
+            icon: "info",
+          });
+          localStorage.setItem('firstCreation', 'false');
+        }
       }
 
     }, error => {
@@ -70,7 +83,6 @@ export class ProfileComponent implements OnInit {
   }
 
   goToEdit() {
-
 
 
     this.route.navigate(['editProfile']);
@@ -87,13 +99,13 @@ export class ProfileComponent implements OnInit {
         html: 'Por favor espera mientras subimos tu imagen',
         timerProgressBar: true,
         didOpen: () => {
-    Swal.showLoading()
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
+          Swal.showLoading()
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
       });
       reader.onload = () => {
         this.registerForm.get('image').setValue(reader.result.toString().split('base64,')[1]);
