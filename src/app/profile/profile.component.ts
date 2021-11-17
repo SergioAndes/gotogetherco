@@ -43,13 +43,14 @@ export class ProfileComponent implements OnInit {
   }
 
   public getImages() {
+     console.log("d",this.description==null)
         const firstCreation = localStorage.getItem('firstCreation')
     const stack = [];
     this.authService.getImages(this.id, localStorage.getItem('token')).subscribe(data => {
       console.log("foto", data.profiles)
       const fotos = data.profiles;
       this.imagesarray = data
-      if (fotos.length < 1) {
+      if (fotos.length < 1 ) {
         Swal.fire({
           title: "Bienvenido a GoTogether!",
           text: "Antes de empezar, por favor edita tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
@@ -59,13 +60,19 @@ export class ProfileComponent implements OnInit {
         this.imagesarray = stack;
 
       } else {
-        if (this.description != "") {
+        if (this.description == null) {
+                  Swal.fire({
+          title: "Bienvenido a GoTogether!",
+          text: "Genial ahora edita tu perfil y agrega una descripcion",
+          icon: "info",
+        });
 
         }
         fotos.forEach(element =>
           stack.push(element.image));
         this.imagesarray = stack;
-        if (firstCreation == 'true' && this.imagesarray.length > 0) {
+
+        if (firstCreation == 'true' && this.imagesarray.length > 0 && this.description!=null) {
           Swal.fire({
             title: "Crea tu primer plan!",
             html: "Ya estamos listos para salir al ruedo. <br> " +

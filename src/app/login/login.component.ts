@@ -30,10 +30,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data.token);
       this.setFirebaseNOtificationKey(data.user);
       console.log('urser', data);
-      if(localStorage.getItem('firstBrowse')!='true'){
+      if(localStorage.getItem('firstBrowse')!='false'){
         localStorage.setItem('firstBrowse', 'true');
       }
-      if(localStorage.getItem('firstCreation')!='true'){
+      if(localStorage.getItem('firstCreation')!='false'){
         localStorage.setItem('firstCreation', 'true');
       }
       localStorage.setItem('user',JSON.stringify(data.user));

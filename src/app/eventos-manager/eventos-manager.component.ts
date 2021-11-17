@@ -98,6 +98,10 @@ export class EventosManagerComponent implements OnInit {
 
       });
       console.log("Mtaches actualizados", this.matches)
+          if (this.matches.length == 0) {
+      Swal.fire('Oops...', 'Parece que aun no tienes chats, postulate a mas eventos y cruza los dedos para ' +
+        'que alguien acepte tu solicitud ', 'info');
+    }
 
 
     }, error => {
