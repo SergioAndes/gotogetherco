@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
 import Swal from "sweetalert2";
 import {UserService} from "../services/user.service";
 import {EventoService} from "../services/evento.service";
+import {NotificationsComponent} from "../notifications/notifications.component";
 
 @Component({
   selector: 'app-ver-solicitud',
@@ -10,8 +11,10 @@ import {EventoService} from "../services/evento.service";
   styleUrls: ['./ver-solicitud.component.css']
 })
 export class VerSolicitudComponent implements OnInit {
+  public destinatarioid: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private authService: UserService, private eventoService: EventoService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<NotificationsComponent>,
+              private authService: UserService, private eventoService: EventoService) {
   }
 
   public user: any;
@@ -25,8 +28,9 @@ export class VerSolicitudComponent implements OnInit {
   }
 
   getImages() {
-    this.authService.getImages(this.user.id,localStorage.getItem('token')).subscribe(dataz => {
+    this.authService.getImages(this.user.id, localStorage.getItem('token')).subscribe(dataz => {
       console.log("fotos", dataz.profiles)
+      this.destinatarioid = dataz.profiles[0].owner
       this.fotos = dataz.profiles
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
@@ -36,7 +40,23 @@ export class VerSolicitudComponent implements OnInit {
 
   acceptSolicitud() {
     this.eventoService.crearMatch(this.data.idEvento.users.id).subscribe(data => {
-      console.log("match",data)
+      this.authService.getUserById(this.destinatarioid).subscribe(dataz => {
+        console.log("user destino", dataz[0])
+        if (dataz.notificationToken != null) {
+          this.authService.sendPushnotification(dataz.notificationToken).subscribe(dataz => {
+
+          }, error => {
+            Swal.fire('Oops...', 'error en datos ingresados', 'error');
+            console.log('datadssd', error);
+          });
+        }
+
+      }, error => {
+        Swal.fire('Oops...', 'error en datos ingresados', 'error');
+        console.log('datadssd', error);
+      });
+
+      console.log("match", data)
       Swal.fire('Success!', 'Genial! se habilitó un chat con tu match para que cuadren los detalles de su encuentro. Pasenla bien!', 'success');
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
@@ -44,4 +64,7 @@ export class VerSolicitudComponent implements OnInit {
     });
   }
 
+  close() {
+    this.dialogRef.close();
+  }
 }

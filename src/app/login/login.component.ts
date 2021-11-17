@@ -11,9 +11,12 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   public registerForm: FormGroup;
+  public token:any;
   constructor(private authService: UserService, private route: Router) { }
 
   ngOnInit(): void {
+    this.token =localStorage.getItem("nochiveToken")
+    console.log("token en ninit",this.token)
     this.registerForm = new FormGroup({
       correo: new FormControl('', [Validators.required,Validators.email]),
       contrasena: new FormControl()
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
     const user = this.registerForm.get('correo').value;
     const pass = this.registerForm.get('contrasena').value;
     this.authService.loginUser(user, pass).subscribe(data => {
+      this.setFirebaseNOtificationKey(data.user);
       console.log('urser', data);
       localStorage.setItem('token', data.token);
       if(localStorage.getItem('firstBrowse')!='true'){
@@ -42,5 +46,18 @@ export class LoginComponent implements OnInit {
   }
 
   get correo() { return this.registerForm.get('correo'); }
+
+  setFirebaseNOtificationKey(user){
+
+    this.authService.updateUser1(user,this.token).subscribe(data => {
+      console.log("usuario actualizado",data)
+
+    }, error => {
+      Swal.fire('Oops...', 'error en datos ingresados', 'error');
+      console.log('datadssd', error);
+    });
+
+
+  }
 
 }

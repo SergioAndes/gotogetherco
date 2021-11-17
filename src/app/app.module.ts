@@ -42,6 +42,7 @@ import {AngularFireMessagingModule} from "@angular/fire/messaging";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { EditEventComponent } from './edit-event/edit-event.component';
 const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com/', options: {} };
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
     EditProfileComponent,
     CreateEventComponent,
     NotificationsComponent,
-    VerSolicitudComponent
+    VerSolicitudComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,

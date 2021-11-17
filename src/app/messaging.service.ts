@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AngularFireMessaging} from '@angular/fire/messaging';
 import {BehaviorSubject} from 'rxjs'
+import {UserService} from "./services/user.service";
+import Swal from "sweetalert2";
 
 @Injectable()
 export class MessagingService {
@@ -18,7 +20,7 @@ export class MessagingService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-
+        localStorage.setItem('nochiveToken', token);
         console.log(token);
       },
       (err) => {
