@@ -42,8 +42,13 @@ export class VerSolicitudComponent implements OnInit {
     this.eventoService.crearMatch(this.data.idEvento.users.id).subscribe(data => {
       this.authService.getUserById(this.destinatarioid).subscribe(dataz => {
         console.log("user destino", dataz[0])
-        if (dataz.notificationToken != null) {
-          this.authService.sendPushnotification(dataz.notificationToken).subscribe(dataz => {
+        if (dataz[0].notificationToken != null) {
+          console.log("entra")
+          const body="Solicitud a plan aceptada!"
+          const title="Han aceptado la solicitud al plan que te postulaste! entra a la app y chatea con esa persona para" +
+            "cuadrar los detalles del encuentro "
+          this.authService.sendPushnotification(dataz[0].notificationToken,body,title).subscribe(dataz => {
+            console.log("respiesta",dataz)
 
           }, error => {
             Swal.fire('Oops...', 'error en datos ingresados', 'error');

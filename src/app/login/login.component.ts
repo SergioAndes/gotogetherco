@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
     const user = this.registerForm.get('correo').value;
     const pass = this.registerForm.get('contrasena').value;
     this.authService.loginUser(user, pass).subscribe(data => {
+      localStorage.setItem('token', data.token);
       this.setFirebaseNOtificationKey(data.user);
       console.log('urser', data);
-      localStorage.setItem('token', data.token);
       if(localStorage.getItem('firstBrowse')!='true'){
         localStorage.setItem('firstBrowse', 'true');
       }

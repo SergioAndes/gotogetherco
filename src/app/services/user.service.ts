@@ -55,15 +55,15 @@ export class UserService {
     return this.http.get(this.URL_HOST + 'users/profile/' + id, {'headers': headers});
   }
 
-  sendPushnotification(destino): Observable<any> {
+  sendPushnotification(destino,body,title): Observable<any> {
     let headers = new HttpHeaders({
       'Authorization': 'key =AAAAWSL5_po:APA91bEZdsZ4_xB6d--I7JmQJ96t6ZVE5mt6rdVqS4Xvkl5EL6Rx0OAiecBWI2CMGj1C8XTmrZ8UAhGR8kEOH2UdOw1Zh3eRt_g17bjsKFVOfCfUunvts6V0a3KZ-HbxED39_xu-VlRp',
       'Content-Type': 'application/json'
     });
     return this.http.post('https://fcm.googleapis.com/fcm/send', {
       "notification": {
-        "title": "Tienes una nueva solicitud",
-        "body": "Una persona esta interesa en ir a un plan contigo, entra a la app y mira quien es!"
+        "title": title,
+        "body": body
       },
       "to": destino
     }, {'headers': headers});
