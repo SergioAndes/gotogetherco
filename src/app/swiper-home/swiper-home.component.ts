@@ -53,7 +53,7 @@ export class SwiperHomeComponent implements OnInit {
       console.log("genero persona", this.gender)
       data.forEach(element => {
         console.log("genero interesado", element.gender_interest)
-        if ((element.gender_interest == this.gender || element.gender_interest == 'B' || element.user_id == this.userid) && (element.event_state == true)) {
+        if ((element.gender_interest == this.gender || element.gender_interest == 'B') && (element.event_state == true)) {
           console.log("entro al fi")
           this.userService.getUserById(element.user_id).subscribe(dataz => {
             console.log("user", dataz)
