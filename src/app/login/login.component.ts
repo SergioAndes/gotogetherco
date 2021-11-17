@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = this.registerForm.get('correo').value;
+    const user = this.registerForm.get('correo').value.toLowerCase();
     const pass = this.registerForm.get('contrasena').value;
     this.authService.loginUser(user, pass).subscribe(data => {
       localStorage.setItem('token', data.token);
