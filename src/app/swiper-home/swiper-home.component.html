@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
 
-
- <swiper [effect]="'cards'" [grabCursor]="true" class="mySwiper">
+<div style="max-width: 480px;overflow: hidden;margin: auto;">
+ <swiper [effect]="'cards'" [grabCursor]="true" class="mySwiper" >
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
 
@@ -80,3 +80,4 @@
   </ng-template>
 </swiper>
 
+</div>
