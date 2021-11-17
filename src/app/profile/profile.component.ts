@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {UserService} from "../services/user.service";
+import {Socket} from "ngx-socket-io";
 
 @Component({
   selector: 'app-profile',
@@ -18,8 +19,9 @@ export class ProfileComponent implements OnInit {
 
   public registerForm: FormGroup;
   public test: boolean;
+  private email: any;
 
-  constructor(private route: Router, private formBuilder: FormBuilder, private authService: UserService) {
+  constructor(private socket: Socket,private route: Router, private formBuilder: FormBuilder, private authService: UserService) {
   }
 
   ngOnInit(): void {
@@ -36,21 +38,32 @@ export class ProfileComponent implements OnInit {
     this.description = userparse.description;
     this.id = userparse.id;
     this.edad = userparse.age;
+    this.email=userparse.email;
     this.getImages();
+    this.joinChat();
     console.log("a", this.imagesarray)
 
 
   }
 
+    joinChat() {
+      this.socket.emit('join', {username: this.email, room: 'room1'}, (error) => {
+        if (error) {
+          alert(error)
+          location.href = '/'
+        }
+      })
+    }
+
   public getImages() {
-     console.log("d",this.description==null)
-        const firstCreation = localStorage.getItem('firstCreation')
+    console.log("d", this.description == null)
+    const firstCreation = localStorage.getItem('firstCreation')
     const stack = [];
     this.authService.getImages(this.id, localStorage.getItem('token')).subscribe(data => {
       console.log("foto", data.profiles)
       const fotos = data.profiles;
       this.imagesarray = data
-      if (fotos.length < 1 ) {
+      if (fotos.length < 1) {
         Swal.fire({
           title: "Bienvenido a GoTogether!",
           text: "Antes de empezar, por favor edita tu descripcion y sube un par de fotos, asi tendras mas chance de hacer match!",
@@ -61,18 +74,18 @@ export class ProfileComponent implements OnInit {
 
       } else {
         if (this.description == null) {
-                  Swal.fire({
-          title: "Bienvenido a GoTogether!",
-          text: "Genial ahora edita tu perfil y agrega una descripcion",
-          icon: "info",
-        });
+          Swal.fire({
+            title: "Bienvenido a GoTogether!",
+            text: "Genial ahora edita tu perfil y agrega una descripcion",
+            icon: "info",
+          });
 
         }
         fotos.forEach(element =>
           stack.push(element.image));
         this.imagesarray = stack;
 
-        if (firstCreation == 'true' && this.imagesarray.length > 0 && this.description!=null) {
+        if (firstCreation == 'true' && this.imagesarray.length > 0 && this.description != null) {
           Swal.fire({
             title: "Crea tu primer plan!",
             html: "Ya estamos listos para salir al ruedo. <br> " +
