@@ -29,6 +29,7 @@ export class ChatlistComponent implements OnInit, OnChanges {
   channelList = []// = ["pedro", "pablo", "camila"]; //mockData
 
   currentUser: string = JSON.parse(localStorage.getItem("user")).username;
+  userFrom: string = JSON.parse(localStorage.getItem("user")).first_name;
   userToChat: string;
   room = "room1";
 
@@ -103,9 +104,9 @@ export class ChatlistComponent implements OnInit, OnChanges {
       this.authService.getUserById(this.userid).subscribe(dataz => {
         console.log("tokenizer",dataz[0].notificationToken)
         if (dataz[0].notificationToken != null) {
-          console.log("entra")
+          console.log("mensaje de",this.userFrom)
           const body = msg
-          const title = "Nuevo mensaje de "+this.username
+          const title = "Nuevo mensaje de "+this.userFrom
           this.authService.sendPushnotification(dataz[0].notificationToken, body.text, title).subscribe(dataz => {
             console.log("respiesta", dataz)
 
