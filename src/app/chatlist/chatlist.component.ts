@@ -1,4 +1,4 @@
-import {Component, OnInit, Injectable, Input, SimpleChanges, OnChanges} from '@angular/core';
+import {Component, OnInit, Injectable, Input, SimpleChanges, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import {Socket} from 'ngx-socket-io';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import Swal from "sweetalert2";
@@ -36,6 +36,7 @@ export class ChatlistComponent implements OnInit, OnChanges {
   getMessagesPath = "https://chat-nodejs-backend.herokuapp.com/messages?me=" + this.currentUser + "&" + "someone=";
   public userid: any;
   private username: any;
+  @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
 
   //const user = { id, username, room, connected: true }; Example
   //const message = {username, text, createdAt}
@@ -43,6 +44,9 @@ export class ChatlistComponent implements OnInit, OnChanges {
   constructor(private authService: UserService, private socket: Socket, private http: HttpClient) {
 
 
+  }
+  ngOnDestroy(){
+    this.closeAddExpenseModal.nativeElement.click();
   }
 
   ngOnInit(): void {
