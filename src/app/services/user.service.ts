@@ -42,6 +42,7 @@ export class UserService {
 
   uploadImage(form: any): Observable<any> {
     const token = localStorage.getItem('token');
+    console.log("TOKEEEEEN",token)
     let headers = new HttpHeaders({'Authorization': 'Token ' + token});
     return this.http.post(this.URL_HOST + 'users/profile/new/', form, {'headers': headers});
   }
@@ -56,7 +57,10 @@ export class UserService {
     return this.http.get(this.URL_HOST + 'users/profile/' + id, {'headers': headers});
   }
 
-  sendPushnotification(destino,body,title): Observable<any> {
+  getFBimage(token,iduser): Observable<any> {
+    return this.http.get('https://graph.facebook.com/v2.8/'+iduser+'/picture?access_token=' + token+'&redirect=false&width=600&height=600');
+  }
+  sendPushnotification(destino, body, title): Observable<any> {
     let headers = new HttpHeaders({
       'Authorization': 'key =AAAAWSL5_po:APA91bEZdsZ4_xB6d--I7JmQJ96t6ZVE5mt6rdVqS4Xvkl5EL6Rx0OAiecBWI2CMGj1C8XTmrZ8UAhGR8kEOH2UdOw1Zh3eRt_g17bjsKFVOfCfUunvts6V0a3KZ-HbxED39_xu-VlRp',
       'Content-Type': 'application/json'

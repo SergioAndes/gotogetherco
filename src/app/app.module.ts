@@ -100,7 +100,7 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
 
   ],
   entryComponents: [NotificationsComponent],
-  providers: [MessagingService,AsyncPipe,
+  providers: [MessagingService,AsyncPipe,ProfileComponent,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MatDialogRef, useValue: {}},
     {provide: MAT_DIALOG_DATA, useValue: {}},

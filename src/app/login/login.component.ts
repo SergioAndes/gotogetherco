@@ -65,6 +65,9 @@ export class LoginComponent implements OnInit {
 
   logInFB() {
     this.fbService.loginWithFB();
-}
+  }
 
+  goToRegister() {
+    this.route.navigate(['/register'])
+  }
 }

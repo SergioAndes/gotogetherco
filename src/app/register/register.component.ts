@@ -37,10 +37,12 @@ export class RegisterComponent implements OnInit {
           icon: "info",
         });
       this.route.navigate(['login']);
+
     },error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
  console.log('datadssd', error);
     });
   }
+
 
 }

@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
 
+
     this.registerForm = this.formBuilder.group({
       image: [''],
     });
@@ -97,7 +98,6 @@ export class ProfileComponent implements OnInit {
       }
 
     }, error => {
-      Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
     });
   }
@@ -128,6 +128,7 @@ export class ProfileComponent implements OnInit {
         }
       });
       reader.onload = () => {
+        console.log("dedeed98",reader.result.toString().split('base64,')[1])
         this.registerForm.get('image').setValue(reader.result.toString().split('base64,')[1]);
         this.authService.uploadImage(this.registerForm.value).subscribe(data => {
           Swal.fire('Success!', 'Foto subida correctamente', 'success');
