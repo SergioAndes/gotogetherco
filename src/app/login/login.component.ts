@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from "../services/user.service";
 import Swal from 'sweetalert2';
 import {Router} from "@angular/router";
+import {FacebookAuthService} from "../facebook-auth.service";
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   public registerForm: FormGroup;
   public token:any;
-  constructor(private authService: UserService, private route: Router) { }
+  constructor( private fbService: FacebookAuthService,private authService: UserService, private route: Router) { }
 
   ngOnInit(): void {
     this.token =localStorage.getItem("nochiveToken")
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+
     const user = this.registerForm.get('correo').value.toLowerCase();
     const pass = this.registerForm.get('contrasena').value;
     this.authService.loginUser(user, pass).subscribe(data => {
@@ -59,5 +62,9 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  logInFB() {
+    this.fbService.loginWithFB();
+}
 
 }
