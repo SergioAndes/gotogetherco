@@ -118,6 +118,7 @@ body {
 
 input,
 textarea,
+select,
 button {
     padding: 8px 15px;
     border-radius: 5px !important;
@@ -129,6 +130,7 @@ button {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;

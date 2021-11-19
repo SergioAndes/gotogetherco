@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
         if (this.description == null) {
           Swal.fire({
             title: "Bienvenido a GoTogether!",
-            text: "Genial ahora edita tu perfil y agrega una descripcion",
+            text: "Genial ahora edita tu perfil, agrega tu edad, tu genero y una descripcion",
             icon: "info",
           });
 
@@ -103,9 +103,12 @@ export class ProfileComponent implements OnInit {
   }
 
   goToEdit() {
-
-
     this.route.navigate(['editProfile']);
+  }
+
+  cerrarSession() {
+    this.route.navigate(['login']);
+    localStorage.clear();
   }
 
   subirImagen(event) {

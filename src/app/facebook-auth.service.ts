@@ -40,17 +40,18 @@ export class FacebookAuthService {
   }
 
   loginWithFB() {
-    this.fbProvider.addScope('user_gender');
-    this.fbProvider.addScope('user_birthday');
+    //this.fbProvider.addScope('user_gender');
+    //this.fbProvider.addScope('user_birthday');
+    this.fbProvider.setCustomParameters({'display': 'popup'})
     this.Auth.auth.signInWithPopup(this.fbProvider)
       .then((result: any) => {
         const fbtoken = result.credential.accessToken
         console.log("tokens", fbtoken)
         let birdi = result.additionalUserInfo.profile.birthday;
         console.log("resilt", result)
-        const tempsplit = birdi.split('/');
+        //const tempsplit = birdi.split('/');
         const joinstring = "-";
-        const newdate = tempsplit[2] + joinstring + tempsplit[0] + joinstring + tempsplit[1];
+        const newdate = '2020-01-01';
         console.log("resilt", newdate)
         let sex = "M"
         if (result.additionalUserInfo.profile.gender == "male") {
@@ -73,6 +74,7 @@ export class FacebookAuthService {
             localStorage.setItem('token', data.token);
             this.setFirebaseNOtificationKey(data.user);
             console.log('urser', data);
+            localStorage.setItem('isLogged', "true");
             if (localStorage.getItem('firstBrowse') != 'false') {
               localStorage.setItem('firstBrowse', 'true');
             }
@@ -94,9 +96,9 @@ export class FacebookAuthService {
                     icon: "info",
                   }).then((result) => {
                     if (result.value) {
-                          this.zone.run(() => {
-                    this.route.navigate(['profile']);
-                  });
+                      this.zone.run(() => {
+                        this.route.navigate(['profile']);
+                      });
                     }
                   });
 
@@ -123,6 +125,7 @@ export class FacebookAuthService {
               localStorage.setItem('token', data.token);
               this.setFirebaseNOtificationKey(data.user);
               console.log('urser', data);
+              localStorage.setItem('isLogged', "true");
               if (localStorage.getItem('firstBrowse') != 'false') {
                 localStorage.setItem('firstBrowse', 'true');
               }

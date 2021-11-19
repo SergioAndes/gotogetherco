@@ -12,17 +12,26 @@ import {FacebookAuthService} from "../facebook-auth.service";
 })
 export class LoginComponent implements OnInit {
 
+
   public registerForm: FormGroup;
   public token:any;
-  constructor( private fbService: FacebookAuthService,private authService: UserService, private route: Router) { }
+  constructor( private fbService: FacebookAuthService,private authService: UserService, private route: Router) {
+    this.loginredirect()
+  }
 
   ngOnInit(): void {
+
     this.token =localStorage.getItem("nochiveToken")
     console.log("token en ninit",this.token)
     this.registerForm = new FormGroup({
       correo: new FormControl('', [Validators.required,Validators.email]),
       contrasena: new FormControl()
     });
+  }
+  loginredirect(){
+    if(localStorage.getItem("isLogged")=="true"){
+      this.route.navigate(['/profile'])
+    }
   }
 
   login() {
@@ -33,6 +42,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data.token);
       this.setFirebaseNOtificationKey(data.user);
       console.log('urser', data);
+      localStorage.setItem('isLogged', "true");
       if(localStorage.getItem('firstBrowse')!='false'){
         localStorage.setItem('firstBrowse', 'true');
       }

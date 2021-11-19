@@ -7,18 +7,22 @@
           <mat-hint style="color: black"><b>Nombre</b></mat-hint>
             <br><br>
             <mat-card-content><input formControlName="first_name"  style="background: transparent" value="{{first_name}}" matInput></mat-card-content>
-               <mat-hint style="color: black"><b>Genero</b></mat-hint><br><br>
-            <mat-card-subtitle style="color: black"><input formControlName="sex"  style="background: transparent" value="{{sex}}" matInput></mat-card-subtitle>
+               <mat-hint style="color: black"><b>Genero</b></mat-hint><br>
+                        <div class="form-group mb-3">
 
-            <label class="form-control-label px-3">Fecha de nacimiento</label>
+                  <select formControlName="sex" matNativeControl style="background: transparent">
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                  </select>
+              </div>
+<mat-hint style="color: black"><b>Fecha de nacimiento</b></mat-hint>
+
 <mat-card-subtitle  style="color: black"><input style="background: transparent" formControlName="birth_date"  matInput [matDatepicker]="picker">
                            <mat-datepicker-toggle style="color: #f75959;visibility: visible" matSuffix
                                                   [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker style="color: #f75959"></mat-datepicker><br></mat-card-subtitle>
 
-  <mat-label><b>Descripcion</b></mat-label><br><br>
-
-
+  <mat-label><b>Descripcion</b></mat-label><br>
 
 
           <mat-card-content>
