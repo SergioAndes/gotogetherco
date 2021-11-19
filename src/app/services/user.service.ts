@@ -47,6 +47,13 @@ export class UserService {
     return this.http.post(this.URL_HOST + 'users/profile/new/', form, {'headers': headers});
   }
 
+    borrarImagen(idimage: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    console.log("TOKEEEEEN",token)
+    let headers = new HttpHeaders({'Authorization': 'Token ' + token});
+    return this.http.delete(this.URL_HOST + 'users/profile/delete/'+idimage);
+  }
+
 
   getUserById(id: any): Observable<any> {
     return this.http.get(this.URL_HOST + 'users/search/' + id);

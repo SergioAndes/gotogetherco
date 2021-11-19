@@ -162,3 +162,13 @@ button:focus {
     box-shadow: none !important;
     outline-width: 0
 }
+.container { position: relative; }
+.container img { display: block; }
+.container .fa-download { position: absolute; bottom:0; left:0; }
+
+hr {
+  display: block;
+  margin: 10px 0 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  width: 100%
+}

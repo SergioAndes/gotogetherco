@@ -1,45 +1,128 @@
 <app-navbar></app-navbar>
 <br>
 <br>
-<form [formGroup]="registerForm" (ngSubmit)="editEvent()">
-        <mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
 
-          <mat-hint style="color: black"><b>Nombre</b></mat-hint>
-            <br><br>
-            <mat-card-content><input formControlName="first_name"  style="background: transparent" value="{{first_name}}" matInput></mat-card-content>
-               <mat-hint style="color: black"><b>Genero</b></mat-hint><br>
-                        <div class="form-group mb-3">
+<form [formGroup]="registerForm" >
+  <mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;overflow-x: hidden;"
+            [class.mat-elevation-z8]=true>
+    <mat-label style="padding-top: 10px"><h1>EDITAR PERFIL</h1></mat-label><hr><br>
+    <mat-grid-list cols="2" rowHeight="1:1.5" [gutterSize]="'15px'">
+      <div style="position: relative;  " *ngFor="let image of images" style="border-radius: 25px; ">
+        <mat-grid-tile [class.mat-elevation-z8]=true
+                       style="background-position: center center;   Background-repeat :no-repeat;border-radius:25px;background-size: cover;background-image: url('{{image.image}}');overflow: visible">
+          <button
+            style="border: 0px solid #ccc;transform: scale(2);  color: #f75959;  position: absolute;bottom: 0px;right: 0px;"
+            mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon matTooltip="Eliminar esta foto" >delete</mat-icon>
+          </button>
 
-                  <select formControlName="sex" matNativeControl style="background: transparent">
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                  </select>
-              </div>
-<mat-hint style="color: black"><b>Fecha de nacimiento</b></mat-hint>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list><br>
+<button (click)="uploader.click()" mat-button color="primary" style="padding: 5px; width: 100%;color: white;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">SUBIR FOTOS</button>
+        <input type="file" hidden id="file" hiden #uploader (change)="subirImagen($event)" class="fadeIn second"
+           name="login"
+           placeholder="logo_asamblea">
+    <br><br><hr>
+    <div style="text-align: center;">
+    <mat-label style="  margin: auto;
+  width: 50%;"><h1>Informacion Personal</h1></mat-label><br>
+</div>
 
-<mat-card-subtitle  style="color: black"><input style="background: transparent" formControlName="birth_date"  matInput [matDatepicker]="picker">
-                           <mat-datepicker-toggle style="color: #f75959;visibility: visible" matSuffix
-                                                  [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker style="color: #f75959"></mat-datepicker><br></mat-card-subtitle>
+    <mat-hint style="color: black"><b>Nombre</b></mat-hint>
+    <br>
+    <mat-card-content><input formControlName="first_name" style="background: transparent" value="{{first_name}}"
+                             matInput></mat-card-content>
+    <mat-hint style="color: black"><b>Genero</b></mat-hint>
+    <br>
+    <div class="form-group mb-3">
 
-  <mat-label><b>Descripcion</b></mat-label><br>
+      <select formControlName="sex" matNativeControl style="background: transparent">
+        <option value="H">Hombre</option>
+        <option value="M">Mujer</option>
+      </select>
+    </div>
+    <mat-hint style="color: black"><b>Fecha de nacimiento</b></mat-hint>
+
+    <mat-card-subtitle style="color: black"><input style="background: transparent" formControlName="birth_date" matInput
+                                                   [matDatepicker]="picker">
+      <mat-datepicker-toggle style="color: #f75959;visibility: visible" matSuffix
+                             [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker style="color: #f75959"></mat-datepicker>
+      <br></mat-card-subtitle>
+
+    <mat-label><b>Descripcion</b></mat-label>
+    <br>
 
 
-          <mat-card-content>
-            <p>
+    <mat-card-content>
+      <p>
 
-  <textarea formControlName="description" placeholder="Descripcion" value="{{description}}" style="width: 100%;background: transparent" matInput
+  <textarea formControlName="description" placeholder="Descripcion" value="{{description}}"
+            style="width: 100%;background: transparent" matInput
             cdkTextareaAutosize
             cdkAutosizeMinRows="1"
             cdkAutosizeMaxRows="5"></textarea>
 
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>Guardar</button>
-          </mat-card-actions>
-          </mat-card>
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="primary" style="padding: 5px; width: 50%;color: white;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);" mat-button (click)="editEvent()">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
 
 </form>
 
 
+<style>
+
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: red;
+  }
+
+  .container:hover .overlay {
+    opacity: 1;
+  }
+
+  .icon {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .fa-user:hover {
+    color: #eee;
+  }
+
+  .input-icons i {
+    position: absolute;
+  }
+
+  .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .icon {
+    padding: 10px;
+    color: green;
+    min-width: 50px;
+    text-align: left;
+  }
+</style>
