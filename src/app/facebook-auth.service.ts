@@ -40,6 +40,19 @@ export class FacebookAuthService {
   }
 
   loginWithFB() {
+          Swal.fire({
+        title: 'Registrandote',
+        html: 'Espera mientras te registramos',
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      });
     //this.fbProvider.addScope('user_gender');
     //this.fbProvider.addScope('user_birthday');
     this.fbProvider.setCustomParameters({'display': 'popup'})

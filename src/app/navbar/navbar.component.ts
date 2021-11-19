@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+showFiller = false;
   constructor(private route: Router) { }
 
   ngOnInit(): void {

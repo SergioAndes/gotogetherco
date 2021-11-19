@@ -1,3 +1,8 @@
 .example-spacer {
 flex: auto;
 }
+
+
+.example-sidenav {
+  padding-top: 50px;
+}
