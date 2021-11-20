@@ -18,15 +18,15 @@ export class UploadImageComponent implements OnInit, AfterViewInit {
   imageUrl: any;
 
   config=  {
-    aspectRatio : 1/1,
+    aspectRatio : 1,
     dragMode : 'move',
     background : true,
     movable: true,
     rotatable : true,
     scalable: true,
     zoomable: true,
-    viewMode:3,
-    autoCropArea: 0.9,
+    viewMode:1,
+    autoCropArea: 1,
     cropBoxMovable: false,
     cropBoxResizable: false,
     checkCrossOrigin: false,checkImageOrigin : false,
