@@ -45,6 +45,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import { EditEventComponent } from './edit-event/edit-event.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import {AngularCropperjsModule} from "angular-cropperjs";
+
 const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com/', options: {} };
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
     CreateEventComponent,
     NotificationsComponent,
     VerSolicitudComponent,
-    EditEventComponent
+    EditEventComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +94,7 @@ const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
     SocketIoModule.forRoot(config),
+    AngularCropperjsModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

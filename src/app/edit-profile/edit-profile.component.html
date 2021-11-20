@@ -13,13 +13,13 @@
           <button
             style="border: 0px solid #ccc;transform: scale(2);  color: #f75959;  position: absolute;bottom: 0px;right: 0px;"
             mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon matTooltip="Eliminar esta foto" >delete</mat-icon>
+            <mat-icon matTooltip="Eliminar esta foto" (click)="deleteImage(image.id)" >delete</mat-icon>
           </button>
 
         </mat-grid-tile>
       </div>
     </mat-grid-list><br>
-<button (click)="uploader.click()" mat-button color="primary" style="padding: 5px; width: 100%;color: white;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">SUBIR FOTOS</button>
+<button (click)="uploadimage2()" mat-button color="primary" style="padding: 5px; width: 100%;color: white;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">SUBIR FOTOS</button>
         <input type="file" hidden id="file" hiden #uploader (change)="subirImagen($event)" class="fadeIn second"
            name="login"
            placeholder="logo_asamblea">

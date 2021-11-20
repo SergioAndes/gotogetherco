@@ -11,6 +11,7 @@ import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {CreateEventComponent} from "./create-event/create-event.component";
 import {NotificationsComponent} from "./notifications/notifications.component";
 import {AuthGuard} from "./services/auth.guard";
+import {UploadImageComponent} from "./upload-image/upload-image.component";
 
 
 
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'editProfile', component: EditProfileComponent,canActivate:[AuthGuard]},
   {path: 'createEvent', component: CreateEventComponent,canActivate:[AuthGuard]},
   {path: 'notifications/:idEvento', component: NotificationsComponent,canActivate:[AuthGuard]},
+  {path: 'upload', component: UploadImageComponent}
 ];
 
 @NgModule({

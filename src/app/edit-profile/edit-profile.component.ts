@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {UploadImageComponent} from "../upload-image/upload-image.component";
 
 
 @Component({
@@ -15,7 +17,7 @@ export class EditProfileComponent implements OnInit {
   public images: any;
 
 
-  constructor(private authService: UserService, private formBuilder: FormBuilder, private route: Router) {
+  constructor(public dialog: MatDialog,private authService: UserService, private formBuilder: FormBuilder, private route: Router) {
     const user = localStorage.getItem('user')
     const userparse = JSON.parse(user)
     this.id = userparse.id;
@@ -111,7 +113,20 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  deleteImage(id: any) {
+  deleteImage(id) {
+    this.authService.borrarImagen(id).subscribe(data => {
+      Swal.fire('Success!', 'Foto borrada', 'success');
+          location.reload();
+    }, error => {
+          Swal.fire('Oops...', 'error en datos ingresados', 'error');
+          console.log('datadssd', error);
+        });
+  }
 
+    uploadimage2(): void {
+    const dialogRef = this.dialog.open(UploadImageComponent, {
+      width: '100%',
+      height: '100%',
+    });
   }
 }

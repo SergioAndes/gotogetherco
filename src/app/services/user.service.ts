@@ -51,7 +51,7 @@ export class UserService {
     const token = localStorage.getItem('token');
     console.log("TOKEEEEEN",token)
     let headers = new HttpHeaders({'Authorization': 'Token ' + token});
-    return this.http.delete(this.URL_HOST + 'users/profile/delete/'+idimage);
+    return this.http.delete(this.URL_HOST + 'users/profile/delete/'+idimage,{'headers': headers});
   }
 
 
