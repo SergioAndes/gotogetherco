@@ -1,5 +1,8 @@
-<mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
   <br>
+    <br>
+<mat-card class="example-card" style=" max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
+
+
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>{{user.first_name}}</mat-card-title>
@@ -17,6 +20,7 @@
 
 
     </swiper>
+    <br>
 
 
     <p>
@@ -25,7 +29,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions style="text-align: center">
-    <button mat-button>Cancelar</button>
+    <button mat-button (click)="close()">Cancelar</button>
     <button mat-button (click)="acceptSolicitud()">Gotogether!</button>
   </mat-card-actions>
 

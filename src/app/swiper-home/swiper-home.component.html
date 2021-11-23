@@ -1,14 +1,11 @@
 <app-navbar></app-navbar>
 
-<br>
-<br>
-
-<swiper [slidesPerView]="1" (slideChange)="onSwiper($event)" [spaceBetween]="30" [pagination]="{clickable: true}"
-        class="mySwiper">
+<div style="max-width: 480px;overflow: hidden;margin: auto;">
+ <swiper [effect]="'cards'" [grabCursor]="true" class="mySwiper" >
 
   <ng-template swiperSlide *ngFor="let evento of eventos, let i=index;">
 
-    <mat-card class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
+    <mat-card  class="example-card" style="max-height: 750px;overflow-y: auto;" [class.mat-elevation-z8]=true>
       <br>
       <mat-card-header>
 
@@ -42,7 +39,7 @@
         </p>
       </mat-card-content>
               <mat-card-actions style="text-align: center;">
-        <button mat-button type="submit" (click)="postulate(evento.evento.id)"
+        <button mat-button type="submit" (click)="postulate(evento.evento)"
                 style="    border: 1px solid #ff572296!important;">Postularse
         </button>
       </mat-card-actions>
@@ -54,7 +51,7 @@
 <br>
       <mat-card-header>
 
-        <mat-card-title>{{evento.usuario.first_name}}</mat-card-title>
+        <mat-card-title>{{evento.usuario.first_name}}, {{evento.usuario.age}}</mat-card-title>
 
       </mat-card-header>
         <br>
@@ -81,4 +78,6 @@
 
   </ng-template>
 </swiper>
+
+</div>
 

@@ -10,6 +10,8 @@ import {ProfileComponent} from "./profile/profile.component";
 import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {CreateEventComponent} from "./create-event/create-event.component";
 import {NotificationsComponent} from "./notifications/notifications.component";
+import {AuthGuard} from "./services/auth.guard";
+import {UploadImageComponent} from "./upload-image/upload-image.component";
 
 
 
@@ -24,14 +26,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {path: 'login', component: LoginComponent},
-  {path: 'swiper', component: SwiperHomeComponent},
-  {path: 'chat', component: ChatlistComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'eventos-manager', component: EventosManagerComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'editProfile', component: EditProfileComponent},
-  {path: 'createEvent', component: CreateEventComponent},
-  {path: 'notifications/:idEvento', component: NotificationsComponent},
+  {path: 'swiper', component: SwiperHomeComponent,canActivate:[AuthGuard]},
+  {path: 'chat', component: ChatlistComponent,canActivate:[AuthGuard]},
+  {path: 'register', component: RegisterComponent,canActivate:[AuthGuard]},
+  {path: 'eventos-manager', component: EventosManagerComponent,canActivate:[AuthGuard]},
+  {path: 'profile', component: ProfileComponent,canActivate:[AuthGuard]},
+  {path: 'editProfile', component: EditProfileComponent,canActivate:[AuthGuard]},
+  {path: 'createEvent', component: CreateEventComponent,canActivate:[AuthGuard]},
+  {path: 'notifications/:idEvento', component: NotificationsComponent,canActivate:[AuthGuard]},
+  {path: 'upload', component: UploadImageComponent}
 ];
 
 @NgModule({

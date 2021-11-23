@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {AsyncPipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { SwiperHomeComponent } from './swiper-home/swiper-home.component';
 import { SwiperModule } from 'swiper/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
@@ -34,7 +34,21 @@ import { environment } from '../environments/environment';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { VerSolicitudComponent } from './ver-solicitud/ver-solicitud.component';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { FormsModule } from '@angular/forms';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {MessagingService} from "./messaging.service";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireMessagingModule} from "@angular/fire/messaging";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import { EditEventComponent } from './edit-event/edit-event.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import { UploadImageComponent } from './upload-image/upload-image.component';
+import {AngularCropperjsModule} from "angular-cropperjs";
 
+const config: SocketIoConfig = { url: 'https://chat-nodejs-backend.herokuapp.com/', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +64,9 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
     EditProfileComponent,
     CreateEventComponent,
     NotificationsComponent,
-    VerSolicitudComponent
+    VerSolicitudComponent,
+    EditEventComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +87,14 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
     MatGridListModule,
     MatDividerModule,
     MatDialogModule,
+    FormsModule,
+    MatTooltipModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    SocketIoModule.forRoot(config),
+    AngularCropperjsModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -78,14 +102,19 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angula
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    MatRippleModule
+
+    MatRippleModule,
+    MatSidenavModule,
+    MatListModule
 
   ],
   entryComponents: [NotificationsComponent],
-  providers: [
+  providers: [MessagingService,AsyncPipe,ProfileComponent,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MatDialogRef, useValue: {}},
-    {provide: MAT_DIALOG_DATA, useValue: {}},],
+    {provide: MAT_DIALOG_DATA, useValue: {}},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,21 +1,28 @@
-<nav class="navbar navbar-default fixed-top" style="background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">
-<mat-toolbar fixed-top class="navbar navbar-default navbar-fixed-top" style="height: 50px;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-  </button>
-  <span style="pointer-events: auto;" (click)="goToSwiper()">GoTogether</span>
-  <span class="example-spacer"></span>
+<nav class="navbar navbar-default fixed-top"
+     style="background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">
+  <mat-toolbar fixed-top class="navbar navbar-default navbar-fixed-top"
+               style="height: 50px;background: linear-gradient(to bottom right, #ff9966, #ff5e62 100%);">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    </button>
+    <span style="pointer-events: auto;" (click)="goToSwiper()">GoTogether</span>
+    <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+
+    </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon (click)="goHome()">home</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon (click)="goToEventManare()">class</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon (click)="goToCreateEvent()" >add_circle_outline</mat-icon>
-  </button>
+      <mat-icon matTooltip="Ver planes" (click)="goHome()">home</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon matTooltip="Chat" (click)="goToEventManare()">chat</mat-icon>
+    </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon (click)="goToProfile()" >account_box</mat-icon>
-  </button>
-</mat-toolbar>
-    </nav>
-<br><br>
+      <mat-icon matTooltip="Gestionar planes" (click)="goToCreateEvent()">add_circle_outline</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon matTooltip="Perfil" (click)="goToProfile()">account_box</mat-icon>
+    </button>
+  </mat-toolbar>
+</nav>
+
+
+

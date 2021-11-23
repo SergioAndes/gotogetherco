@@ -11,8 +11,8 @@
 						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
 							<div class="text w-100">
 								<h2>GoTogether!</h2>
-								<p>No tienes una cuenta?</p>
-								<a href="#/register" class="btn btn-white btn-outline-white">Registrate</a>
+								<p>Te aburren los formularios de registro? Ingresa con un click</p>
+								<button (click)="logInFB()" class="btn btn-white btn-outline-white">Ingresa con Facebook</button><br><br>
 							</div>
 			      </div>
 						<div class="login-wrap p-4 p-lg-5">
@@ -22,11 +22,12 @@
 			      		</div>
 								<div class="w-100">
 									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a (click)="logInFB()"class="social-icon d-flex align-items-center justify-content-center"><span  class="fa fa-facebook"></span></a>
 										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
 									</p>
 								</div>
 			      	</div>
+
 							<form action="#" class="signin-form" [formGroup]="registerForm">
 			      		<div class="form-group mb-3">
 			      			<label class="label" >Correo</label>
@@ -43,6 +44,9 @@
 
 		            <div class="form-group">
 		            	<button  type="submit" class="form-control btn btn-primary submit px-3" [disabled]="!registerForm.valid" (click)="login()">Sign In</button>
+		            </div>
+                		            <div class="form-group">
+		            <button  type="submit" class="form-control btn btn-primary submit px-3" (click)="goToRegister()" >Registrate</button>
 		            </div>
 		            <div class="form-group d-md-flex">
 		            	<div class="w-50 text-left">

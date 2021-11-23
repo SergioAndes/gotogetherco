@@ -21,18 +21,28 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required]],
       sex: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      birth_date: ['', [Validators.required]],
     });
   }
 
   registerUser(){
+    this.registerForm.get("birth_date").setValue(this.registerForm.get("birth_date").value.toISOString().split('T')[0]);
+    this.registerForm.get("email").setValue(this.registerForm.get("email").value.toLowerCase());
     console.log("log",this.registerForm.value)
     this.authService.registerUser(this.registerForm.value).subscribe(data => {
-      Swal.fire('success', 'Usuario registrado exitosamente!', 'success');
+          Swal.fire({
+          title: "Bienvenido a GoTogether!",
+          html: "Aqui puedes crear tu plan perfecto para salir con la persona perfecta.<br><br> No tienes un plan? no importa, " +
+            "acá tambien puedes unirte a planes que han sido creados por otros",
+          icon: "info",
+        });
       this.route.navigate(['login']);
+
     },error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
  console.log('datadssd', error);
     });
   }
+
 
 }

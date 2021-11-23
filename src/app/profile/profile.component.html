@@ -5,7 +5,7 @@
   <br>
   <mat-card-header>
 
-    <mat-card-title >{{nombre}}</mat-card-title>
+    <mat-card-title >{{nombre}}, {{edad}}</mat-card-title>
   </mat-card-header>
 
 
@@ -31,10 +31,8 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="goToEdit()">Editar</button>
-    <button style="text-align: right" mat-button (click)="uploader.click()">Subir Fotos</button>
-    <input type="file" hidden id="file" hiden #uploader (change)="subirImagen($event)" class="fadeIn second"
-           name="login"
-           placeholder="logo_asamblea">
+
+    <button mat-button (click)="cerrarSession()">Cerrar sesion</button>
   </mat-card-actions>
 
 </mat-card>
