@@ -80,6 +80,13 @@
         <div class="card">
           <h5 class="text-center mb-4">Crea tu plan</h5>
           <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Eventos pre-diseñados</label>
+              <select formControlName="gender_interest" (change)="setTemplateEvento($event.target.value)" matNativeControl style="padding: 8px 15px;border-radius: 5px !important;margin: 5px 0px;box-sizing: border-box;border: 1px solid #ccc;font-size: 18px !important;font-weight: 300;">
+                <option value="">Seleccione eventos pre-diseñados</option>
+                <option *ngFor="let template of templates" [value]="template.id">{{template.name}}</option>
+              </select>
+
+            </div>
             <div class="form-group col-sm-6 flex-column d-flex"><label class="form-control-label px-3">Nombre de
               Evento<span
                 class="text-danger"> *</span></label> <input formControlName="name" type="text" name="fname"
@@ -89,10 +96,10 @@
               encuentro<span
                 class="text-danger"> *</span></label>
               <span>
-              <input formControlName="event_date" matInput [matDatepicker]="picker">
+              <input formControlName="event_date" matInput [matDatepicker]="picker" disabled>
                            <mat-datepicker-toggle style="color: #f75959" matSuffix
                                                   [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker></span>
+              <mat-datepicker #picker disabled="false"></mat-datepicker></span>
 
             </div>
 

@@ -18,6 +18,7 @@ export class CreateEventComponent implements OnInit {
   public visible: any;
   userid:any;
   public eventos: any;
+  public templates: Array<any>;
   evento: any;
 
   constructor(private route: Router,private formBuilder: FormBuilder,private eventoService: EventoService) {
@@ -29,6 +30,7 @@ export class CreateEventComponent implements OnInit {
     const userparse = JSON.parse(user)
     this.userid=userparse.id;
     this.getEventos();
+    this.getTemplateEventos();
 
     this.registerForm = this.formBuilder.group({
       event_hour: ['', [Validators.required]],
@@ -40,8 +42,9 @@ export class CreateEventComponent implements OnInit {
       image: ['',[Validators.required]],
       user_id: [userparse.id],
       subscription_date: ['2021-02-02'],
-      conditions: [1],
+      conditions: [3],
       name: ['',[Validators.required]],
+      fromTemplate: [''],
     });
   }
 
@@ -58,7 +61,13 @@ export class CreateEventComponent implements OnInit {
 
 
   createEvent(): void{
-    let a=this.registerForm.get('event_date').value.toISOString().slice(0, 10);;
+    let a = ""
+    if(this.registerForm.get('event_date').value instanceof Date ){
+      a=this.registerForm.get('event_date').value.toISOString().slice(0, 10);
+    }else{
+      a=this.registerForm.get('event_date').value.slice(0, 10);
+    }
+    
     this.registerForm.get('event_date').setValue(a)
     console.log("creacr",this.registerForm.value)
                 Swal.fire({
@@ -105,6 +114,31 @@ export class CreateEventComponent implements OnInit {
     }, error => {
       Swal.fire('Oops...', 'error en datos ingresados', 'error');
       console.log('datadssd', error);
+    });
+  }
+
+  setTemplateEvento(id:string){
+    const templateSeleted = this.templates.find(template => template.id == id)
+    if(templateSeleted){
+      console.log()
+      this.registerForm.get("description").setValue(templateSeleted.description)
+      this.registerForm.get("name").setValue(templateSeleted.name)
+      this.registerForm.get("event_hour").setValue(templateSeleted.event_hour.substring(0,templateSeleted.event_hour.lastIndexOf(":")))
+      this.registerForm.get("event_date").setValue(templateSeleted.event_date)
+      this.registerForm.get("image").setValue(templateSeleted.image)
+      this.registerForm.get("fromTemplate").setValue(id)
+    }else{
+      this.registerForm.reset()
+    }
+  }
+
+  getTemplateEventos() {
+    this.eventoService.getTemplateEventos().subscribe(data => {
+      console.log("TemplateEvento", data)
+      this.templates = data;
+    }, error => {
+      Swal.fire('Oops...', 'error obteniendo los templates', 'error');
+      console.log('error obteniendo los templates', error);
     });
   }
 

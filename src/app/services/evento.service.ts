@@ -23,6 +23,10 @@ export class EventoService {
     return this.http.get(this.URL_HOST + 'events/GetEventsXType/1');
   }
 
+  getTemplateEventos(): Observable<any> {
+    return this.http.get(this.URL_HOST + 'events/GetEventsTemplate/1');
+  }
+
   createRequest(eventId,userId): Observable<any> {
     return this.http.post(this.URL_HOST + 'events/createRequest',{user_id:userId,event_id:eventId});
   }
