@@ -120,7 +120,6 @@ export class CreateEventComponent implements OnInit {
   setTemplateEvento(id:string){
     const templateSeleted = this.templates.find(template => template.id == id)
     if(templateSeleted){
-      console.log()
       this.registerForm.get("description").setValue(templateSeleted.description)
       this.registerForm.get("name").setValue(templateSeleted.name)
       this.registerForm.get("event_hour").setValue(templateSeleted.event_hour.substring(0,templateSeleted.event_hour.lastIndexOf(":")))

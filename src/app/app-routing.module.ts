@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'swiper', component: SwiperHomeComponent,canActivate:[AuthGuard]},
   {path: 'chat', component: ChatlistComponent,canActivate:[AuthGuard]},
-  {path: 'register', component: RegisterComponent,canActivate:[AuthGuard]},
+  {path: 'register', component: RegisterComponent},
   {path: 'eventos-manager', component: EventosManagerComponent,canActivate:[AuthGuard]},
   {path: 'profile', component: ProfileComponent,canActivate:[AuthGuard]},
   {path: 'editProfile', component: EditProfileComponent,canActivate:[AuthGuard]},
