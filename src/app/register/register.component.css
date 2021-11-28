@@ -4,6 +4,11 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+ .datepicker {
+  width: 86%;
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -7929,6 +7934,9 @@ button.bg-dark:focus {
   text-align: center !important; }
 
 @media (min-width: 576px) {
+  .datepicker {
+    width: 91%
+  }
   .text-sm-left {
     text-align: left !important; }
   .text-sm-right {
@@ -7937,6 +7945,9 @@ button.bg-dark:focus {
     text-align: center !important; } }
 
 @media (min-width: 768px) {
+  .datepicker {
+    width: 87%
+  }
   .text-md-left {
     text-align: left !important; }
   .text-md-right {
@@ -7953,6 +7964,9 @@ button.bg-dark:focus {
     text-align: center !important; } }
 
 @media (min-width: 1200px) {
+  .datepicker {
+    width: 90%
+  }
   .text-xl-left {
     text-align: left !important; }
   .text-xl-right {
@@ -8390,3 +8404,5 @@ h1, h2, h3, h4, h5,
         border: 1px solid transparent;
         background: #fff;
         color: #000; }
+
+        
