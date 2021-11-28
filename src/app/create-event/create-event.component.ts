@@ -42,7 +42,7 @@ export class CreateEventComponent implements OnInit {
       image: ['',[Validators.required]],
       user_id: [userparse.id],
       subscription_date: ['2021-02-02'],
-      conditions: [3],
+      conditions: [1],
       name: ['',[Validators.required]],
       fromTemplate: [''],
     });
